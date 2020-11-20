@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}    
+@font-face {
+    font-family: 'Eurostile';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Eurostile'), url('eurostile.woff') format('woff');
+}
+body {
+    font-family: 'Eurostile';
+    background-color: yellow;
+}
+header {
+    text-align: center;
+}
+img {
+    width: 200px;
+}
+.imgacerto {
+    width: 900px;
+}
+#projeto1 {
+    text-align: center;
+}
+#projeto2 {
+    text-align: center;
+    padding-top: 1%;
+}
+li {
+    font-size: xx-large;
+}
+a {
+    text-decoration: None;
+}    

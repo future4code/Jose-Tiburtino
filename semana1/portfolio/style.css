@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}    
+@font-face {
+    font-family: 'Eurostile';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Eurostile'), url('eurostile.woff') format('woff');
+}
+    
+body {
+    font-family: 'Eurostile';
+    background-color: #FFC927;
+}
+header {
+    text-align: center;
+    background-color: #FFC927;
+    color: black;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+a:hover {
+    background-color: white;
+    color: black;
+}    
+h1, h2, h3 {
+    text-align: center;
+}
+h3 {
+    padding-top: 1%;;
+}
+.imagempc {
+    text-align: center;
+}
+#apresentacao {
+    background-color: black;
+    color: white;
+}
+.formacao {
+    padding-top: 2%;;
+}   
+ul {
+    text-align: center;
+    font-weight: 300;
+    font-size: 20px;
+}
+.experinciatr {
+    background-color: black;
+    color: white;
+}
+.olatudo {
+    padding-top: 2%;
+}
+.projetosqfiz {
+    text-align: center;
+    display: block;
+    padding-top: 2%;
+}
+#projetostodo {
+    padding-top: 2%;
+}
+.projetos {
+    width: 500px;
+    height: 300px;
+}
+#habilidades {
+    background-color: black;
+    color: white;
+    padding-top: 2%;
+    vertical-align: auto;
+}
+.aaha {
+    padding-top: 1%;
+}
+form {
+    text-align: center;
+    padding-top: 1%;
+    background-color: black;
+    color: white;
+}
+.tamanh {
+    width: 200px;
+    height: 50px;
+}
+img {
+    width: 250px;
+
+}
+footer {
+    padding-top: 0,5%;
+    text-align: center;
+}
+.redgit {
+    width: 50px;
+}    
