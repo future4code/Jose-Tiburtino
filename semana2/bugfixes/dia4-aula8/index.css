@@ -68,6 +68,12 @@ div img {
     height: 15px;
     width: 15px;
 }
+.icone:hover {
+    opacity: 0.2;
+}
+.icone:active {
+    opacity: 2;
+}
 
 a{ 
     text-decoration: none;
