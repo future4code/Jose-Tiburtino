@@ -66,6 +66,10 @@ div img {
     width: 15px;
 }
 
+a{ 
+    text-decoration: none;
+}
+
 
 /** 
   *
@@ -80,6 +84,7 @@ div img {
 
 #container-de-descricao>ol {
     padding: 15px 0px;
+    list-style-position: inside;
 }
 
 #container-para-comprar {
