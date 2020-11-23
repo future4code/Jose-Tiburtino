@@ -131,12 +131,14 @@ button:hover {
 
 #back-button {
     background-color: white;
+    display: block;
     width: 100px;
     height: 20px;
     border: 1px solid black;
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    margin: auto;
 }
 
 #back-button:hover {
