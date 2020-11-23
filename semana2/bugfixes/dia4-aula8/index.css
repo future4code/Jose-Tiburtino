@@ -22,6 +22,7 @@ input {
     border: none;
     border-bottom: solid black 1px;
     outline: 0;
+    box-shadow:none;
 }
 
 button:focus {
@@ -49,6 +50,8 @@ div img {
     color: white;
     display: block;
     margin: auto;
+    box-shadow:none;
+
 }
 
 .botao-amarelo:hover {
@@ -123,6 +126,8 @@ td button {
     border-radius: 5px;
     color: black;
     font-family: 'Roboto', sans-serif;
+    box-shadow:none;
+
 }
 button:hover {
     background-color:#ddb500;
