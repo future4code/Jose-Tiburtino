@@ -21,6 +21,7 @@ input {
     width: 500px;
     border: none;
     border-bottom: solid black 1px;
+    outline: 0;
 }
 
 button:focus {
@@ -57,6 +58,7 @@ div img {
 .container {
     height: 500px;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
 }
 
 .icone {
@@ -106,6 +108,7 @@ table {
     width: 60%;
     text-align: center;
     margin: auto;
+    font-family: 'Roboto', sans-serif;
 }
 
 td button {
@@ -114,6 +117,7 @@ td button {
     height: 30px;
     border-radius: 5px;
     color: black;
+    font-family: 'Roboto', sans-serif;
 }
 button:hover {
     background-color:#ddb500;
