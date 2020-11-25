@@ -1,0 +1,197 @@
+/* ETAPA 1 */
+
+#pond {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ETAPA 2  */
+
+#pond {
+  display: flex;
+  justify-content: center;
+}
+
+/* ETAPA 3 */
+
+#pond {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* ETAPA 4 */
+
+#pond {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ETAPA 5 */
+
+#pond {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ETAPA 6 */
+
+#pond {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ETAPA 7 */
+
+#pond {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+/* ETAPA 8 */
+
+#pond {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+/* ETAPA 9 */
+
+#pond {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ETAPA 10 */
+
+#pond {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+
+/* ETAPA 11 */
+
+#pond {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+/* ETAPA 12 */
+
+#pond {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+}
+
+/* ETAPA 13 */
+
+#pond {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: row-reverse;
+}
+
+/* ETAPA 14 */
+
+#pond {
+  display: flex;
+}
+
+.yellow {
+  order: 1;
+}
+
+/* ETAPA 15 */
+
+#pond {
+  display: flex;
+}
+
+.red {
+  order: -1;
+}
+
+/* ETAPA 16 */
+
+#pond {
+  display: flex;
+  align-items: flex-start;
+}
+
+.yellow {
+  align-self: flex-end;
+}
+
+/* ETAPA 17 */
+
+#pond {
+  display: flex;
+  align-items: flex-start;
+}
+
+.yellow {
+  order: 4;
+  align-self: flex-end;
+}
+
+/* ETAPA 18 */
+
+#pond {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ETAPA 19 */
+
+#pond {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+/* ETAPA 20 */
+
+#pond {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+/* ETAPA 21 */
+
+#pond {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+/* ETAPA 22 */
+
+#pond {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+}
+
+/* ETAPA 23 */
+
+#pond {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+  align-content: center;
+}
+
+/* ETAPA 24 */
+
+#pond {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
+  align-content: space-between;
+}
