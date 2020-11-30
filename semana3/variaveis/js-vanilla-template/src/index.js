@@ -54,7 +54,12 @@ console.log("Resposta: " +pergunta5);
 /* EXERCÍCIO 3
 
 let array = ['Strogonoff','Frango Assado','Batata Frita', 'Arroz', 'Feijão']
-console.log('Essas são minhas comidas preferidas: ' +array);
+console.log('Essas são minhas comidas preferidas: ');
+console.log(array [0]);
+console.log(array [1]);
+console.log(array [2]);
+console.log(array [3]);
+console.log(array [4]);
 
 let comida = prompt ("Qual sua comida preferida?")
 array[1] = comida
