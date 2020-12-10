@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #DAE5E8;
+}
+
+section {
+    display: flex;
+    justify-content: space-evenly;
+    height: 60vh;
+}
+
+.semana {
+    border: 1px dotted rgb(53, 53, 53);
+    border-bottom: 0;
+    border-top: 0;
+    border-color:purple;
+    width: 14%;
+    padding: 5px;
+}
+
+footer {
+    display: flex;
+    height: 30vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #DAE5E8;
+}
+
+footer>button {
+    width: 100px;
+    height: 50px;
+}
+
+h3 {
+    display: flex;
+    justify-content: center;
+}
