@@ -139,7 +139,6 @@
 // Podemos utilizar os arrays/objetos para colocar e organizar melhor nossas opções como uma lista.
 
 // Objeto 2:
-
 // let criaRetangulo = (lado1, lado2) => {
 //     let retObjeto ={
 //         largura: lado1,
@@ -151,3 +150,14 @@
 // }
 
 // console.log(criaRetangulo(40,50));
+
+// Objetos 3:
+// let filmeFav = {
+//     título: "O Protetor",
+//     ano: 2014,
+//     diretor: "Antoine Fuqua",
+//     atores: ["Denzel Washington", "Chloe Moretz", "Marton Csokas"]
+// }
+
+// console.log(`Venha assistir ao filme ${filmeFav.título}, de ${filmeFav.ano}, dirigindo por ${filmeFav.diretor} e estrelado por ${filmeFav.atores}.`);
+
