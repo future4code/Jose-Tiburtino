@@ -161,3 +161,18 @@
 
 // console.log(`Venha assistir ao filme ${filmeFav.título}, de ${filmeFav.ano}, dirigindo por ${filmeFav.diretor} e estrelado por ${filmeFav.atores}.`);
 
+// Objetos 4:
+
+// let personDados = {
+//     nome: "José Victor",
+//     idade: 21,
+//     email: "josevictortf@gmail.com",
+//     endereço: "Rua Uichi Miyake, Colinas de Indaiatuba II, Indaiatuba-SP"
+// }
+
+// let anonimizarPessoa = (pessoaNome) => {
+//     pessoaNome.nome = "ANÔNIMO"
+//     return pessoaNome
+// }
+
+// console.log(anonimizarPessoa(personDados));
