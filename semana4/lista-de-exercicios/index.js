@@ -24,3 +24,96 @@
 // No primeiro console.log será impresso o maior número do array.
 // No segundo console.log será impresso o menor número do array.
 
+// Exercícios de Lógica de Programação:
+
+// Lógica 1:
+// for of, for, for each.
+
+// const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+//     for (let i = 0; i < array.length; i++){
+//         console.log(array[i]);
+//     }
+
+//     for (numbers of array) {
+//         console.log(numbers);
+//     }
+
+//     array.forEach ((elemento, index, array) => { 
+//         console.log(elemento);
+//     })
+
+
+// Lógica 2:
+// a: False.
+// b: False.
+// c: True.
+// d: True.
+// e: True.
+
+// Lógica 3:
+// O código não funciona pois não fez uma condição para verificar os números pares.
+
+// const quantidadeDeNumerosPares = 3
+// let i = 0
+// while(i <= quantidadeDeNumerosPares*2-1) {
+//     if ( i % 2 === 0){
+//      console.log(i)
+//      i+=1
+//     }
+//     else {
+//         i+=1
+//     }
+// }
+
+// Lógica 4:
+
+// let triangulo = (a, b, c) => {
+//     let resultTriangulo = ''
+//     if (a === b && a === c && b === c){
+//         resultTriangulo = "Equilátero"
+//     }
+//     else if (a === b || a === c || b === c) {
+//         resultTriangulo = "Isósceles"
+//     }
+//     else {
+//         resultTriangulo = "Escaleno"
+//     }
+//     return resultTriangulo
+// }
+
+// Lógica 5:
+
+// const numero1 = 15
+// const numero2 = 30
+
+// let maior = 0
+// let diferenca = numero1 - numero2
+
+// if (numero1>numero2) {
+//     maior=numero1
+//     console.log(`O maior é ${maior}`);
+// }
+// else if (numero2>numero1) {
+//     maior=numero2
+//     console.log(`O maior é ${maior}`);
+// }
+
+// if (numero1 % numero2 === 0) {
+//     console.log(`O ${numero1} é divísivel por ${numero2}`);
+// }
+// else {
+//     console.log(`O ${numero1} é divísivel por ${numero2} `);
+// }
+
+// if (numero2 % numero1 === 0) {
+//     console.log(`O ${numero2} é divísivel por ${numero1}`);
+// }
+// else {
+//     console.log(`O ${numero2} é divísivel por ${numero1} `);
+// }
+
+// if (diferenca < 0) {
+//     diferenca *= -1
+// }
+
+// console.log(`A diferença entre eles é ${diferenca}`);
