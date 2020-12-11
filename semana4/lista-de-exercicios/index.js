@@ -206,3 +206,44 @@
 //     return menorIdade
 // }
 // console.log(justYoung(randomPeople));
+
+// Funções de array 2:
+// A:
+// const array = [1, 2, 3, 4, 5, 6]
+
+// const multArray = (array) => {
+//     const newArray = array.map ((multi, index, array) => {
+//         return multi*2
+//     }
+//     )
+//     return newArray
+// }
+// console.log(multArray(array));
+
+// B:
+
+// const multTresArray = (array) => {
+//     const newArray = array.map ((multi, index, array) => {
+//         return '' + multi*3
+//     }
+//     )
+//     return newArray
+// }
+// console.log(multTresArray(array));
+
+// C:
+
+// const parOuImpar = (array) => {
+//     const parArray = array.map ((multi, index, array) => {
+//         if (multi % 2 === 0){
+//             return `${multi} é par` 
+//         }
+//         else {
+//             return `${multi} é impar`
+//         }
+//     }
+//     )
+//     return parArray
+// }
+
+// console.log(parOuImpar(array));
