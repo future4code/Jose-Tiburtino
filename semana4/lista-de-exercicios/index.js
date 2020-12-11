@@ -12,4 +12,11 @@
 // No primeiro console.log será impresso = 150 * 1.1 = 165
 // No segundo console.log não será impresso nada e dará um alert que informa o usuário que o tipo de investimento está incorreto.
 
+// Interpretação 3:
+// O código passa pelos números verificando se os mesmos são números pares ou ímpares.
+// Caso o número seja par será adicionado no array1, e se o número for ímpar será adicionado ao array2.
+// No primeiro console.log será impresso a quantidade de números que temos no array números que é 14.
+// No segundo console.log será impresso a quantidade de números pares que temos nos array1.
+// No terceiro console.log será impresso a quantidade de números ímpares que temos no array2.
+
 
