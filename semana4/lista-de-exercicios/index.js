@@ -176,3 +176,33 @@
 // }
 
 // console.log(anonimizarPessoa(personDados));
+
+
+// Exercícios de funções de Array:
+
+// Funções de array 1:
+
+// const randomPeople = [
+//     { nome: "Pedro", idade: 20 },
+// 	{ nome: "João", idade: 10 },
+// 	{ nome: "Paula", idade: 12 },
+// 	{ nome: "Artur", idade: 89 } 
+// ]
+
+// let justAdultos = (array) => {
+//     const maiorIdade = array.filter((maior, index, array) => {
+//         return maior.idade >= 20
+//     }
+//     )
+//     return maiorIdade
+// }
+// console.log(justAdultos(randomPeople));
+
+// let justYoung = (array) => {
+//     const menorIdade = array.filter((menor, index, array) => {
+//         return menor.idade <= 20
+//     }
+//     )
+//     return menorIdade
+// }
+// console.log(justYoung(randomPeople));
