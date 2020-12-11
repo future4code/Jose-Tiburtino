@@ -247,3 +247,36 @@
 // }
 
 // console.log(parOuImpar(array));
+
+// Funções de Array 3:
+
+// A:
+
+// const pessoas = [
+// 	{ nome: "Paula", idade: 12, altura: 1.8},
+// 	{ nome: "João", idade: 20, altura: 1.3},
+// 	{ nome: "Pedro", idade: 15, altura: 1.9},
+// 	{ nome: "Luciano", idade: 22, altura: 1.8},
+// 	{ nome: "Artur", idade: 10, altura: 1.2},
+// 	{ nome: "Soter", idade: 70, altura: 1.9}
+// ]
+
+// const temPermission = (array) => {
+//     const enterPermission = array.filter ((elemento, index, array) => {
+//         return elemento.altura >= 1.5 && elemento.idade>14 && elemento.idade<60
+//     }   
+//     )
+//     return enterPermission
+// }
+// console.log("Pessoas com permissão para entrar:", temPermission(pessoas));
+
+// // B:
+
+// const noPermission = (array) => {
+//     const enterPermission = array.filter ((elemento, index, array) => {
+//         return elemento.altura < 1.5 || elemento.idade<14 || elemento.idade>60
+//     }   
+//     )
+//     return enterPermission
+// }
+// console.log("Pessoas sem permissão para entrar:", noPermission(pessoas));
