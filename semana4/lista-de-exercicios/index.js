@@ -19,4 +19,8 @@
 // No segundo console.log será impresso a quantidade de números pares que temos nos array1.
 // No terceiro console.log será impresso a quantidade de números ímpares que temos no array2.
 
+// Interpretação 4:
+// Está percorrendo o array e verificando se algum número do array é < que Infinity e também se algum número do array é maior que 0.
+// No primeiro console.log será impresso o maior número do array.
+// No segundo console.log será impresso o menor número do array.
 
