@@ -133,3 +133,21 @@
 // }
 // alerta ()
 
+// Exercício de objetos:
+
+// Objetos 1:
+// Podemos utilizar os arrays/objetos para colocar e organizar melhor nossas opções como uma lista.
+
+// Objeto 2:
+
+// let criaRetangulo = (lado1, lado2) => {
+//     let retObjeto ={
+//         largura: lado1,
+//         altura: lado2,
+//         perímetro: 2*(lado1+lado2),
+//         área: (lado1*lado2)
+//     }
+//     return retObjeto
+// }
+
+// console.log(criaRetangulo(40,50));
