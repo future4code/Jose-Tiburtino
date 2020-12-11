@@ -117,3 +117,19 @@
 // }
 
 // console.log(`A diferença entre eles é ${diferenca}`);
+
+
+// Exercício de Funções:
+
+// Função 1:
+
+// Não sei.
+
+
+// Função 2:
+
+// const alerta = () => {
+//     return alert ("Hello Labenu!")
+// }
+// alerta ()
+
