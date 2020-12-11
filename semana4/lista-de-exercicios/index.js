@@ -286,27 +286,40 @@
 // 	{ nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
 // ]
 
+// const consCancel = (array) => {
+//     const emailCancel = array.map ((elemento, index, array) => {
+//         if (elemento.cancelada === false) {
+//             return `Olá, ${elemento.genero === 'masculino'? 'Sr.': 'Sra'} ${elemento.nome}. Estamos enviando esta mensagem para ${elemento.genero === 'masculino'? 'lembrá-lo': 'lembrá-la'} da sua consulta no dia ${elemento.dataDaConsulta}. Por favor, acuse o recebimento deste e-mail.`
+//         }
+//         else if (elemento.cancelada === true) {
+//             return `Olá, ${elemento.genero === 'masculino'? 'Sr.': 'Sra' } ${elemento.nome}. Infelizmente, sua consulta marcada para o dia ${elemento.dataDaConsulta} foi cancelada. Se quiser, pode entrar em contato conosco para remarcá-la`
+//         }        
+//     }
+//     )
+//     return emailCancel
+// }
 
+// console.log(consCancel(consultas));
 
 // Funções de Array 5:
 
-const contas = [
-	{ cliente: "João", saldoTotal: 1000, compras: [100, 200, 300] },
-	{ cliente: "Paula", saldoTotal: 7500, compras: [200, 1040] },
-	{ cliente: "Pedro", saldoTotal: 10000, compras: [5140, 6100, 100, 2000] },
-	{ cliente: "Luciano", saldoTotal: 100, compras: [100, 200, 1700] },
-	{ cliente: "Artur", saldoTotal: 1800, compras: [200, 300] },
-	{ cliente: "Soter", saldoTotal: 1200, compras: [] }
-]
+// const contas = [
+// 	{ cliente: "João", saldoTotal: 1000, compras: [100, 200, 300] },
+// 	{ cliente: "Paula", saldoTotal: 7500, compras: [200, 1040] },
+// 	{ cliente: "Pedro", saldoTotal: 10000, compras: [5140, 6100, 100, 2000] },
+// 	{ cliente: "Luciano", saldoTotal: 100, compras: [100, 200, 1700] },
+// 	{ cliente: "Artur", saldoTotal: 1800, compras: [200, 300] },
+// 	{ cliente: "Soter", saldoTotal: 1200, compras: [] }
+// ]
 
-const saldoAtualizado = (array) => {
-    contas.forEach ((contaB, index, array) => {
-        contaB.compras.forEach ((compra, index, array) => {
-            contaB.saldoTotal -= compra
-        }
-        )
-    }
-    )
-    return contas
-}
-console.log(saldoAtualizado(contas));
+// const saldoAtualizado = (array) => {
+//     contas.forEach ((contaB, index, array) => {
+//         contaB.compras.forEach ((compra, index, array) => {
+//             contaB.saldoTotal -= compra
+//         }
+//         )
+//     }
+//     )
+//     return contas
+// }
+// console.log(saldoAtualizado(contas));
