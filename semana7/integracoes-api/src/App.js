@@ -5,7 +5,9 @@ import GetUser from "./Components/GetUser/GetUser";
 
 const Container = styled.div``;
 
-const Button = styled.button``;
+const Button = styled.button`
+  display: inline-block;
+`;
 
 class App extends React.Component {
   state = {
@@ -15,10 +17,6 @@ class App extends React.Component {
 
   changeSection = (event) => {
     this.setState({ section: event.target.getAttribute("value") });
-  };
-
-  receiveId = (clickId) => {
-    this.setState({ section: "details", id: clickId });
   };
 
   render() {
