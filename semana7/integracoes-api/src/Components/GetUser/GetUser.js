@@ -82,7 +82,7 @@ class GetUser extends React.Component {
           {this.state.usersList.map((user) => {
             return (
               <DivList>
-                <li>{user.name}</li>
+                <li onClick={()=>this.props.getId(user.id)}>{user.name}</li>
                 <ButtonDelete onClick={() => this.deleteItem(user.id)}>
                   X
                 </ButtonDelete>
