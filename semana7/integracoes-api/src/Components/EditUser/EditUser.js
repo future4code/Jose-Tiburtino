@@ -35,6 +35,10 @@ class EditUser extends React.Component {
     inputEmail: "",
   };
 
+  componentDidMount () {
+    this.showDetails(this.props.id);
+  }
+
   showDetails = (id) => {
     axios
       .get(
@@ -46,6 +50,7 @@ class EditUser extends React.Component {
         }
       )
       .then((response) => {
+        console.log(response)
         return this.setState({ user: response.data });
       })
       .catch((error) => {
@@ -99,7 +104,7 @@ class EditUser extends React.Component {
 
     axios
       .put(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/:id${this.props.id}`,
+        `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${this.props.id}`,
         body,
         {
           headers: {
@@ -115,6 +120,7 @@ class EditUser extends React.Component {
         );
       })
       .catch((error) => {
+        console.log("Está dando erro")
         return alert("Cadastro não foi realizado!");
       });
   };
