@@ -3,11 +3,82 @@ import axios from "axios";
 import styled from "styled-components";
 import AddMusic from "../AddMusic/AddMusic";
 
-const Button = styled.button``;
+const Button = styled.button`
+  display: flex;
+  :hover {
+    cursor: pointer;
+  }
+`;
 
-const DivApp = styled.div``;
+const DivApp = styled.div`
+  margin-left:3%;
+  margin-right:19%;
+`;
 
-const Playlists = styled.div``;
+const Playlists = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  margin: 15px;
+  position: relative;
+  z-index: 1;
+
+  :before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: -0.25em;
+    right: -0.25em;
+    background-color: #ff8e00;
+    transform-origin: center right;
+    transform: scaleX(0);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  :hover::before {
+    cursor: pointer;
+    transform: scaleX(1);
+    transform-origin: center left;
+  }
+`;
+
+const ButtonBack = styled.button`
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: hsl(236, 32%, 26%);
+  overflow: hidden;
+  transition: color 0.4s ease-in-out;
+
+  :before {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: #3cefff;
+    transform-origin: center;
+    transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
+    transition: transform 0.45s ease-in-out;
+  }
+  :hover {
+    cursor: pointer;
+    color: #161616;
+  }
+  :hover::before {
+    transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
+  }
+`;
 
 class ShowPlaylist extends React.Component {
   state = {
@@ -33,6 +104,7 @@ class ShowPlaylist extends React.Component {
         }
       )
       .then((response) => {
+        console.log(response.data)
         this.setState({ playlist: response.data.result.list });
       })
       .catch((error) => {
@@ -77,29 +149,21 @@ class ShowPlaylist extends React.Component {
       <DivApp>
         {this.state.section === "showPlaylist" ? (
           <div>
-            <Button onClick={this.props.changeSection}>Voltar</Button>
-            <h3>Procurar playlist:</h3>
-            <input
-              placeholder="Coloque o nome da playlist."
-              type="text"
-              value={this.state.name}
-            />
-            <Button>Buscar</Button>
+            <ButtonBack onClick={this.props.changeSection}>Voltar</ButtonBack>
             <ul>
-              <h2>Suas playlists</h2>
-              {this.state.playlist.map((list) => {
+              <h1>Suas playlists</h1>
+              {this.state.playlist.map((playlist) => {
                 return (
                   <li>
                     <Playlists
-                      onClick={() => this.changePage(list.id, list.name)}
+                      playlistId = {playlist.id}
+                      onClick={() => this.changePage(playlist.id)}
                     >
-                      {list.name}
-                      <Button onClick={() => this.deletePlaylist(list.id)}>
-                        X
-                      </Button>
+                      {playlist.name}
                     </Playlists>
-
-                    <hr />
+                    <Button onClick={() => this.deletePlaylist(playlist.id)}>
+                      Deletar Playlist
+                    </Button>
                   </li>
                 );
               })}

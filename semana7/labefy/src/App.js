@@ -2,26 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import CreatePlaylist from "./Components/CreatePlaylist/CreatePlaylist";
 import ShowPlaylist from "./Components/ShowPlaylist/ShowPlaylist";
+import Logo from "./Img/logo.png";
 
 const DivApp = styled.div``;
 
+const LogoContainer = styled.img`
+`
+
 const Header = styled.header`
-  height: 10vh;
+  background-color: #DAE5E8;
+  color: black;
+  font-size: 50px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: #000000;
-  color: white;
-  font-size: xx-large;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const MidContainer = styled.div`
-  height: 90vh;
+  height: 79vh;
   background-color: #f9f9f9;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
 
 class App extends React.Component {
@@ -40,7 +40,10 @@ class App extends React.Component {
   render() {
     return (
       <DivApp>
-        <Header>Labefy</Header>
+        <Header>
+          <LogoContainer src={Logo} alt="logo" />
+          <strong>Labefy</strong>
+        </Header>
         <MidContainer>
           {this.state.section === "createPlaylist" ? (
             <CreatePlaylist changeSection={this.changeSection} />

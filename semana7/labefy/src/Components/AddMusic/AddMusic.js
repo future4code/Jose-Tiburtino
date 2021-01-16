@@ -2,11 +2,62 @@ import React from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-const Button = styled.button``;
+const Button = styled.button`
+  height: 25px;
+  width: 70px;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const DivApp = styled.div`
+  margin-left: 3%;
+`;
 
 const Musics = styled.div``;
 
 const MusicAdd = styled.div``;
+
+const ButtonBack = styled.button`
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: hsl(236, 32%, 26%);
+  overflow: hidden;
+  transition: color 0.4s ease-in-out;
+
+  :before {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: #3cefff;
+    transform-origin: center;
+    transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
+    transition: transform 0.45s ease-in-out;
+  }
+  :hover {
+    cursor: pointer;
+    color: #161616;
+  }
+  :hover::before {
+    transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
+  }
+`;
+
+const Input = styled.input`
+  height: 20px;
+  width: 300px;
+`;
 
 class AddMusic extends React.Component {
   state = {
@@ -19,10 +70,10 @@ class AddMusic extends React.Component {
   };
 
   componentDidMount() {
-    this.addPlaylistDetails();
+    this.renderPlaylistDetails();
   }
 
-  addPlaylistDetails = (changeId) => {
+  renderPlaylistDetails = () => {
     axios
       .get(
         `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.changeId}/tracks
@@ -37,7 +88,6 @@ class AddMusic extends React.Component {
         this.setState({ playlistChanges: response.data.result.tracks });
       })
       .catch((error) => {
-        console.log(error);
       });
   };
 
@@ -67,7 +117,7 @@ class AddMusic extends React.Component {
     this.setState({ url: newUrlValue });
   };
 
-  createPlaylist = (listId) => {
+  createMusic = () => {
     const body = {
       name: this.state.name,
       artist: this.state.artist,
@@ -86,24 +136,50 @@ class AddMusic extends React.Component {
       )
       .then((response) => {
         this.setState({ name: "", artist: "", url: "" });
-        this.addPlaylistDetails();
+        this.renderPlaylistDetails();
         this.changePlaylistEdit();
         alert("Música adicionada a Playlist!");
       })
       .catch((error) => {
         alert("Erro!");
-        console.log(error);
       });
   };
 
+  deleteMusic = (id, musicId) => {
+    if (window.confirm("Quer mesmo deletar essa música?")) {
+      axios
+        .delete(
+          `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks/${musicId}`,
+          {
+            headers: {
+              Authorization: "jose-victor-epps",
+            },
+          }
+        )
+        .then((response) => {
+          alert("Musica excluída da playlist");
+          this.renderPlaylistDetails();
+        })
+        .catch((error) => {
+          return alert("Erro ao excluir a música.");
+        });
+    }
+  };
+
   render() {
-    const details = this.state.playlistChanges.map((playlist) => {
+    const renderPlaylist = this.state.playlistChanges.map((music) => {
+      console.log(music);
       return (
-        <div key={playlist.id}>
+        <div key={music.id}>
           <p>
-            Artista: {playlist.artist} <br /> Música: {playlist.name}
+            Artista: {music.artist} <br /> Música: {music.name}
           </p>
-          <audio src={playlist.url} controls></audio>
+          <audio src={music.url} controls></audio>
+          <button
+            onClick={() => this.deleteMusic(this.props.changeId, music.id)}
+          >
+            Deletar Música
+          </button>
         </div>
       );
     });
@@ -114,37 +190,38 @@ class AddMusic extends React.Component {
       ) : (
         <div>
           <p>Adicione músicas a sua playlist:</p>
-          <input
+          <Input
             placeholder="Nome da música"
             value={this.state.name}
             onChange={this.nameChange}
-          ></input>
+          ></Input>
 
-          <input
+          <Input
             placeholder="Artista"
             value={this.state.artist}
             onChange={this.artistChange}
           />
 
-          <input
+          <Input
             placeholder="URL/Link da música"
             value={this.state.url}
             onChange={this.urlChange}
           />
 
-          <Button onClick={this.createPlaylist}>Salvar</Button>
+          <Button onClick={this.createMusic}>Salvar</Button>
         </div>
       );
 
     return (
-      <div>
-        <Button onClick={this.props.changePage}>Voltar</Button>
+      <DivApp>
+        <ButtonBack onClick={this.props.changePage}>Voltar</ButtonBack>
         <div>{playlistEdit}</div>
         <div>
-          <Musics>{details}</Musics>
+          <h2>Músicas:</h2>
+          <Musics>{renderPlaylist}</Musics>
           <hr />
         </div>
-      </div>
+      </DivApp>
     );
   }
 }

@@ -6,14 +6,85 @@ const DivApp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 `;
 
 const SavePlaylist = styled.div`
-  margin-bottom: 2%;
+  display: flex;
+`;
+
+const H3 = styled.h1`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Button = styled.button`
-  width: 200px;
+  z-index: 1;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: hsl(236, 32%, 26%);
+
+  :hover {
+    cursor: pointer;
+    animation: jelly 0.5s;
+  }
+
+  @keyframes jelly {
+    0%,
+    100% {
+      transform: scale(1, 1);
+    }
+    25% {
+      transform: scale(0.9, 1.1);
+    }
+    50% {
+      transform: scale(1.1, 0.9);
+    }
+    75% {
+      transform: scale(0.95, 1.05);
+    }
+  }
+`;
+
+const ButtonGoPlay = styled.button`
+  height: 50px;
+  width: 300px;
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: hsl(236, 32%, 26%);
+  overflow: hidden;
+  cursor: pointer;
+  ::after {
+    content: "";
+    z-index: -1;
+    background-color: hsla(0, 0%, 100%, 0.2);
+    position: absolute;
+    top: -50%;
+    bottom: -50%;
+    width: 1.25em;
+    transform: translate3d(-525%, 0, 0) rotate(35deg);
+  }
+  :hover::after {
+    transition: transform 0.45s ease-in-out;
+    transform: translate3d(200%, 0, 0) rotate(35deg);
+  }
+`;
+
+const Input = styled.input`
+  height: 50px;
+  width: 500px;
 `;
 
 class CreatePlaylist extends React.Component {
@@ -41,11 +112,9 @@ class CreatePlaylist extends React.Component {
         }
       )
       .then((response) => {
-        console.log(response);
         alert(`Playlist ${this.state.name} criada.`);
       })
       .catch((error) => {
-        console.log(error);
         alert("Erro ao criar a Playlist!");
       });
   };
@@ -53,17 +122,20 @@ class CreatePlaylist extends React.Component {
   render() {
     return (
       <DivApp>
+        <H3>Bem-vindo(a) ao Labefy!</H3>
+        <H3>Crie sua Playlist!</H3>
         <SavePlaylist>
-          <input
+          <Input
             value={this.state.name}
             onChange={this.onChangeName}
             placeholder={"Nome da Playlist"}
-          ></input>
+          ></Input>
           <Button onClick={this.createPlaylist}>Criar Playlist</Button>
         </SavePlaylist>
-        <Button onClick={this.props.changeSection}>
-          Visualizar suas playlists
-        </Button>
+        <H3>Ou</H3>
+        <ButtonGoPlay onClick={this.props.changeSection}>
+          Visualize suas playlists
+        </ButtonGoPlay>
       </DivApp>
     );
   }
