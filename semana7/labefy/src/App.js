@@ -6,11 +6,10 @@ import Logo from "./Img/logo.png";
 
 const DivApp = styled.div``;
 
-const LogoContainer = styled.img`
-`
+const LogoContainer = styled.img``;
 
 const Header = styled.header`
-  background-color: #DAE5E8;
+  background-color: #dae5e8;
   color: black;
   font-size: 50px;
   display: flex;

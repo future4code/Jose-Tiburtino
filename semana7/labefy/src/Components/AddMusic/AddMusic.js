@@ -16,8 +16,6 @@ const DivApp = styled.div`
 
 const Musics = styled.div``;
 
-const MusicAdd = styled.div``;
-
 const ButtonBack = styled.button`
   z-index: 1;
   position: relative;
@@ -65,7 +63,6 @@ class AddMusic extends React.Component {
     artist: "",
     url: "",
     playlistChanges: [],
-    playlists: [],
     listEdit: "edit",
   };
 
@@ -76,7 +73,7 @@ class AddMusic extends React.Component {
   renderPlaylistDetails = () => {
     axios
       .get(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.changeId}/tracks
+        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.playlistId}/tracks
         `,
         {
           headers: {
@@ -87,8 +84,7 @@ class AddMusic extends React.Component {
       .then((response) => {
         this.setState({ playlistChanges: response.data.result.tracks });
       })
-      .catch((error) => {
-      });
+      .catch((error) => {});
   };
 
   changePlaylistEdit = () => {
@@ -126,7 +122,7 @@ class AddMusic extends React.Component {
 
     axios
       .post(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.changeId}/tracks`,
+        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.playlistId}/tracks`,
         body,
         {
           headers: {
@@ -138,10 +134,10 @@ class AddMusic extends React.Component {
         this.setState({ name: "", artist: "", url: "" });
         this.renderPlaylistDetails();
         this.changePlaylistEdit();
-        alert("Música adicionada a Playlist!");
+        alert(`Música adicionada a Playlist!`);
       })
       .catch((error) => {
-        alert("Erro!");
+        alert("Erro, tente novamente!");
       });
   };
 
@@ -161,14 +157,13 @@ class AddMusic extends React.Component {
           this.renderPlaylistDetails();
         })
         .catch((error) => {
-          return alert("Erro ao excluir a música.");
+          return alert("Erro ao excluir a música, tente novamente.");
         });
     }
   };
 
   render() {
     const renderPlaylist = this.state.playlistChanges.map((music) => {
-      console.log(music);
       return (
         <div key={music.id}>
           <p>
@@ -176,7 +171,7 @@ class AddMusic extends React.Component {
           </p>
           <audio src={music.url} controls></audio>
           <button
-            onClick={() => this.deleteMusic(this.props.changeId, music.id)}
+            onClick={() => this.deleteMusic(this.props.playlistId, music.id)}
           >
             Deletar Música
           </button>
@@ -184,33 +179,30 @@ class AddMusic extends React.Component {
       );
     });
 
-    const playlistEdit =
-      this.state.playlistEdition === "editButton" ? (
-        <MusicAdd onClick={this.changePlaylistEdit}>Adicionar tracks</MusicAdd>
-      ) : (
-        <div>
-          <p>Adicione músicas a sua playlist:</p>
-          <Input
-            placeholder="Nome da música"
-            value={this.state.name}
-            onChange={this.nameChange}
-          ></Input>
+    const playlistEdit = (
+      <div>
+        <p>Adicione músicas a sua playlist:</p>
+        <Input
+          placeholder="Nome da música"
+          value={this.state.name}
+          onChange={this.nameChange}
+        ></Input>
 
-          <Input
-            placeholder="Artista"
-            value={this.state.artist}
-            onChange={this.artistChange}
-          />
+        <Input
+          placeholder="Artista"
+          value={this.state.artist}
+          onChange={this.artistChange}
+        />
 
-          <Input
-            placeholder="URL/Link da música"
-            value={this.state.url}
-            onChange={this.urlChange}
-          />
+        <Input
+          placeholder="URL/Link da música"
+          value={this.state.url}
+          onChange={this.urlChange}
+        />
 
-          <Button onClick={this.createMusic}>Salvar</Button>
-        </div>
-      );
+        <Button onClick={this.createMusic}>Salvar</Button>
+      </div>
+    );
 
     return (
       <DivApp>

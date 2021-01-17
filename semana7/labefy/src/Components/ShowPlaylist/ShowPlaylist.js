@@ -11,8 +11,8 @@ const Button = styled.button`
 `;
 
 const DivApp = styled.div`
-  margin-left:3%;
-  margin-right:19%;
+  margin-left: 3%;
+  margin-right: 19%;
 `;
 
 const Playlists = styled.div`
@@ -85,7 +85,7 @@ class ShowPlaylist extends React.Component {
     playlist: [],
     id: "",
     name: "",
-    changeId: "",
+    playlistId: "",
     section: "showPlaylist",
   };
 
@@ -104,12 +104,9 @@ class ShowPlaylist extends React.Component {
         }
       )
       .then((response) => {
-        console.log(response.data)
         this.setState({ playlist: response.data.result.list });
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   deletePlaylist = (id) => {
@@ -133,11 +130,11 @@ class ShowPlaylist extends React.Component {
     }
   };
 
-  changePage = (changeId) => {
+  changePage = (playlistId) => {
     if (this.state.section === "showPlaylist") {
       this.setState({
         section: "details",
-        changeId: changeId,
+        playlistId: playlistId,
       });
     } else {
       this.setState({ section: "showPlaylist", listId: "" });
@@ -156,7 +153,7 @@ class ShowPlaylist extends React.Component {
                 return (
                   <li>
                     <Playlists
-                      playlistId = {playlist.id}
+                      playlistId={playlist.id}
                       onClick={() => this.changePage(playlist.id)}
                     >
                       {playlist.name}
@@ -171,7 +168,7 @@ class ShowPlaylist extends React.Component {
           </div>
         ) : (
           <AddMusic
-            changeId={this.state.changeId}
+            playlistId={this.state.playlistId}
             changePage={this.changePage}
           />
         )}
