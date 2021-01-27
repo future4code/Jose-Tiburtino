@@ -1,28 +1,19 @@
 import React from "react";
-import styled from "styled-components";
-
-const DivForMatches = styled.div``;
-
-const DivMatchesList = styled.div``;
-
-const Img = styled.img`
-  height: 50px;
-  width: 50px;
-`;
-
-const Name = styled.p``;
+import { DivForMatches, DivMatchesList, Img, H2 } from "./MatchesStyled";
 
 const Matches = (props) => {
   return (
     <DivForMatches>
-      {props.matchesList && props.matchesList.map((profile) => {
-        return (
-          <DivMatchesList>
-            <Img src={profile.photo} />
-            <Name>{profile.name}</Name>
-          </DivMatchesList>
-        );
-      })}
+      <H2>Seus matches:</H2>
+      {props.matchesList &&
+        props.matchesList.map((profile) => {
+          return (
+            <DivMatchesList>
+              <Img src={profile.photo} />
+              <p>{profile.name}</p>
+            </DivMatchesList>
+          );
+        })}
     </DivForMatches>
   );
 };

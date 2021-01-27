@@ -1,30 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "../Img/logoastromatch.png";
-import styled from "styled-components";
+import {
+  DivApp,
+  Header,
+  DivAppContainer,
+  Button,
+  MatchIcon,
+  ArrowBack,
+  DeleteMatches,
+} from "./AppContainerStyled";
 import Home from "./Home/Home";
 import Matches from "./Matches/Matches";
-import HowToRegIcon from "@material-ui/icons/HowToReg";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-
-const Div = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-`;
-
-const Header = styled.div``;
-
-const Img = styled.img``;
-
-const DivAppContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
 
 const AppContainer = () => {
   const [profileLoading, setProfileLoading] = useState("");
@@ -84,9 +71,7 @@ const AppContainer = () => {
           getMatches()
         );
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   let renderSection = "";
@@ -94,37 +79,32 @@ const AppContainer = () => {
   switch (section) {
     case "matches":
       renderSection = (
-        <Div>
+        <DivApp>
           <Header>
-            <button onClick={changeSection} value="home">
-              <ArrowBackIcon />
-            </button>
-            <Img src={logo} />
-            <Matches matchesList={matchesList} />
+            <ArrowBack onClick={changeSection} value="home" />
+            <img src={logo} alt="logo do site" />
+            <DeleteMatches onClick={deleteMatches} alt="Deletar Matches" />
           </Header>
-        </Div>
+          <Matches matchesList={matchesList} />
+        </DivApp>
       );
       break;
     default:
       renderSection = (
-        <Div>
+        <DivApp>
           <Header>
-            <Img src={logo} />
-            <button onClick={changeSection} value="matches">
-              <HowToRegIcon />
-            </button>
+            <DeleteMatches onClick={deleteMatches} alt="Deletar Matches" />
+            <img src={logo} alt="logo do site" />
+            <Button onClick={changeSection} value="matches">
+              <MatchIcon onClick={changeSection} value="matches" />
+            </Button>
           </Header>
           <Home profile={profileLoading} newMatches={newMatches} />
-        </Div>
+        </DivApp>
       );
   }
 
-  return (
-    <DivAppContainer>
-      <button onClick={deleteMatches}>Delete suas matches.</button>
-      {renderSection}
-    </DivAppContainer>
-  );
+  return <DivAppContainer>{renderSection}</DivAppContainer>;
 };
 
 export default AppContainer;

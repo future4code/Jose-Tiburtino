@@ -1,5 +1,5 @@
-import React from "react"
-import AppContainer from "./Components/AppContainer"
+import React from "react";
+import AppContainer from "./Components/AppContainer";
 
 const App = () => {
   return (
@@ -7,6 +7,6 @@ const App = () => {
       <AppContainer />
     </div>
   );
-}
+};
 
 export default App;

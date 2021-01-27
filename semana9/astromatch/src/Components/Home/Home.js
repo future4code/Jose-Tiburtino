@@ -5,20 +5,24 @@ import axios from "axios";
 import {
   DivProfiles,
   DivHome,
-  Img,
+  ImgProfile,
   DivStatus,
   ProfileName,
   Age,
+  Heart,
+  HeartAnimation,
+  ImgBlur,
   Description,
-  Button,
+  ButtonHeart,
+  ButtonClose,
   DivChoiceClick,
 } from "./HomeStyled";
 
 const Home = (props) => {
-  const onClickHeart = (like) => {
+  const onClickHeart = () => {
     const body = {
       id: props.profile.id,
-      choice: like,
+      choice: true,
     };
 
     axios
@@ -29,29 +33,40 @@ const Home = (props) => {
       .then((response) => {
         return props.newMatches();
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
+  if (props.profile) {
+    return (
+      <DivProfiles>
+        <DivHome>
+          <ImgBlur image={props.profile.photo} />
+          <ImgProfile src={props.profile.photo} alt={props.profile.name} />
+          <DivStatus>
+            <ProfileName> {props.profile.name},</ProfileName>
+            <Age> {props.profile.age}</Age>
+            <Description> {props.profile.bio} </Description>
+          </DivStatus>
+        </DivHome>
+        <DivChoiceClick>
+          <ButtonClose onClick={() => onClickHeart(false)}>
+            <CloseIcon />
+          </ButtonClose>
+          <ButtonHeart onClick={() => onClickHeart(true)}>
+            <FavoriteIcon />
+          </ButtonHeart>
+        </DivChoiceClick>
+      </DivProfiles>
+    );
+  }
   return (
     <DivProfiles>
       <DivHome>
-        <Img src={props.profile.photo} alt={props.profile.name} />
-        <DivStatus>
-          <ProfileName>{props.profile.name},</ProfileName>
-          <Age>{props.profile.age}</Age>
-          <Description>{props.profile.bio}</Description>
-        </DivStatus>
+        <Heart>
+          <h3>Procurando matches...</h3>
+          <HeartAnimation />
+        </Heart>
       </DivHome>
-      <DivChoiceClick>
-        <Button onClick={() => onClickHeart(false)}>
-          <CloseIcon />
-        </Button>
-        <Button onClick={() => onClickHeart(true)}>
-          <FavoriteIcon />
-        </Button>
-      </DivChoiceClick>
     </DivProfiles>
   );
 };
