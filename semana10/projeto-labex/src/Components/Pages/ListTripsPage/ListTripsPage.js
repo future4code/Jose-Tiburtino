@@ -2,13 +2,24 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
+import { useListTrips } from "../../Hooks/useListTrips";
+import { goToLogin } from "../../Router/Coordinator";
+import styled from "styled-components";
+import AsideSection from "./AsideSections";
+import ContentTrips from "./ContentTrips";
+
+const TripPageContainer = styled.div`
+  display: flex;
+`;
 
 const ListTripsPage = () => {
-  const history = useHistory();
   return (
     <div>
       <Header />
-      <h1>Lista de viagems</h1>
+      <TripPageContainer>
+        <AsideSection />
+        <ContentTrips />
+      </TripPageContainer>
       <Footer />
     </div>
   );

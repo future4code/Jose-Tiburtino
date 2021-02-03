@@ -1,68 +1,122 @@
 import React from "react";
+import axios from "axios";
 import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
-import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { useForm } from "../../Hooks/useForm";
+import { goToListTripsPage } from "../../Router/Coordinator";
 
-const DivStyleForm = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  margin-top: 10%;
-`;
-
-const LoginForm = styled.div`
-  width: 15%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-  box-shadow: 0px 0px 8px 0px rgb(0 0 0 / 16%);
-
-  border-radius: 16px;
-`;
-
-const Field = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Button = styled.button`
-  margin-top: 10%;
-  margin-left: 33%;
-`;
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: "black",
+  },
+  form: {
+    width: "100%",
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 const LoginPage = () => {
   const history = useHistory();
+  const classes = useStyles();
+  const { form, changeState } = useForm({ email: "", password: "" });
+
+  const handleInput = (event) => {
+    const { name, value } = event.target;
+    changeState(name, value);
+  };
+
+  const logIn = (event) => {
+    event.preventDefault();
+    const body = {
+      email: form.email,
+      password: form.password,
+    };
+    axios
+      .post(
+        "https://us-central1-labenu-apis.cloudfunctions.net/labeX/jose-tiburtino-epps/login",
+        body
+      )
+      .then((response) => {
+        localStorage.setItem("token", response.data.token);
+        goToListTripsPage(history);
+      })
+      .catch((error) => {
+        alert("Falha ao logar, tente novamente!");
+      });
+  };
 
   return (
     <div>
       <Header />
-      <DivStyleForm>
-        <LoginForm>
-          <h2>Login</h2>
-          <form>
-            <Field>
-              <label for="email">E-mail</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Coloque seu E-mail"
-              ></input>
-            </Field>
-            <Field>
-              <label for="password">Senha</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Coloque sua senha"
-              ></input>
-            </Field>
-            <Button>Entrar</Button>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Login
+          </Typography>
+          <form className={classes.form} onSubmit={logIn} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Endereço de E-mail"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              value={form.email}
+              onChange={handleInput}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Senha"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={form.password}
+              onChange={handleInput}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Entrar
+            </Button>
           </form>
-        </LoginForm>
-      </DivStyleForm>
+        </div>
+        <Box mt={8}></Box>
+      </Container>
       <Footer />
     </div>
   );
