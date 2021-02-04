@@ -1,17 +1,14 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import Header from "../../Header/Header";
-import Footer from "../../Footer/Footer";
 import { useListTrips } from "../../Hooks/useListTrips";
-import { goToLogin } from "../../Router/Coordinator";
 import styled from "styled-components";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
 
 const DivTrips = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  column-gap: 15px;
+  grid-template-rows: repeat(${(props) => props.lines}, 1fr);
+  gap: 50px;
+  column-gap: 100px;
   justify-content: center;
   padding: 15px;
 `;
@@ -46,14 +43,13 @@ const Title = styled.h1`
 `;
 
 const ContentTrips = () => {
-  const history = useHistory();
   const list = useListTrips();
   useProtectedPage();
 
   return (
     <div>
       <Title>Lista de viagens</Title>
-      <DivTrips>
+      <DivTrips lines={Math.ceil(list.length / 4)}>
         {list.map((trip) => {
           const urlImage = `https://picsum.photos/300/200`;
           return (

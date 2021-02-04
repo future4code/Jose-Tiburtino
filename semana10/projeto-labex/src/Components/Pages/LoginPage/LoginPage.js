@@ -14,6 +14,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useForm } from "../../Hooks/useForm";
 import { goToListTripsPage } from "../../Router/Coordinator";
+import styled from "styled-components";
+
+const LoginContainer = styled.div`
+  height: 81.8vh;
+`;
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,11 +45,6 @@ const LoginPage = () => {
   const classes = useStyles();
   const { form, changeState } = useForm({ email: "", password: "" });
 
-  const handleInput = (event) => {
-    const { name, value } = event.target;
-    changeState(name, value);
-  };
-
   const logIn = (event) => {
     event.preventDefault();
     const body = {
@@ -68,55 +68,57 @@ const LoginPage = () => {
   return (
     <div>
       <Header />
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Login
-          </Typography>
-          <form className={classes.form} onSubmit={logIn} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Endereço de E-mail"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              value={form.email}
-              onChange={handleInput}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Senha"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={form.password}
-              onChange={handleInput}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Entrar
-            </Button>
-          </form>
-        </div>
-        <Box mt={8}></Box>
-      </Container>
+      <LoginContainer>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Login
+            </Typography>
+            <form className={classes.form} onSubmit={logIn} noValidate>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Endereço de E-mail"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                value={form.email}
+                onChange={changeState}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Senha"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={form.password}
+                onChange={changeState}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Entrar
+              </Button>
+            </form>
+          </div>
+          <Box mt={8}></Box>
+        </Container>
+      </LoginContainer>
       <Footer />
     </div>
   );

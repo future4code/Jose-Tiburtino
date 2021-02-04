@@ -1,8 +1,8 @@
 import React from "react";
 import CarouselSistem from "./CarouselSistem";
 import About from "./About";
-import Header from "../../Header/Header"
-import Footer from "../../Footer/Footer"
+import Header from "../../Header/Header";
+import Footer from "../../Footer/Footer";
 
 const HomePage = () => {
   return (

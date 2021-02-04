@@ -10,7 +10,6 @@ export const FooterContainer = styled.div`
   color: white;
   bottom: 0;
   padding: 0 40px;
-  position: absolute;
 `;
 
 export const SocialMedias = styled.a`
