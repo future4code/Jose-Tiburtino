@@ -10,6 +10,10 @@ export const FooterContainer = styled.div`
   color: white;
   bottom: 0;
   padding: 0 40px;
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    flex-direction: column;
+    height: 20vh;
+  }
 `;
 
 export const SocialMedias = styled.a`

@@ -12,7 +12,10 @@ export const DivToFix = styled.div`
   align-items: center;
   width: 25%;
   margin-left: 30%;
-  margin-top: 5%;
+  margin-top: 3%;
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    margin-left: 15%;
+  }
 `;
 
 export const DivCandidates = styled.div`
@@ -45,7 +48,7 @@ export const ListCandidates = styled.div`
 
 export const Icons = styled.span`
   ${(props) =>
-    props.mostrar === "aguardando" ? { display: "flex" } : { display: "none" }}
+    props.show === "aguardando" ? { display: "flex" } : { display: "none" }}
   align-items: center;
 `;
 
@@ -93,5 +96,9 @@ export const ButtonCand = styled.button`
   :hover::before {
     transform-origin: center right;
     transform: scaleX(1);
+  }
+
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    width: 200px;
   }
 `;

@@ -21,6 +21,9 @@ export const DivTrips = styled.div`
   column-gap: 100px;
   justify-content: center;
   padding: 15px;
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const CardTrip = styled.div`
@@ -29,6 +32,10 @@ export const CardTrip = styled.div`
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    width: 200px;
+  }
 `;
 
 export const ImageTrip = styled.div`
@@ -38,7 +45,11 @@ export const ImageTrip = styled.div`
   justify-content: center;
 `;
 
-export const Image = styled.img``;
+export const Image = styled.img`
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    width: 200px;
+  }
+`;
 
 export const Description = styled.div`
   width: 100%;
@@ -59,6 +70,9 @@ export const ProductAsideContainer = styled.div`
   flex-direction: column;
   background-color: #26272b;
   align-items: center;
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    width: 150px;
+  }
 `;
 
 export const TitleAside = styled.h1`
@@ -98,6 +112,10 @@ export const Button = styled.button`
     75% {
       transform: scale(0.95, 1.05);
     }
+  }
+
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    width: 100px;
   }
 `;
 

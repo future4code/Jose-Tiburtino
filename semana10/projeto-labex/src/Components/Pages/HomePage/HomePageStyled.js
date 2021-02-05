@@ -8,6 +8,9 @@ export const DivTrips = styled.div`
   column-gap: 100px;
   justify-content: center;
   padding: 15px;
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const CardTrip = styled.div`

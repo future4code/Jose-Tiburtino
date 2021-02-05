@@ -11,6 +11,9 @@ export const HeaderContainer = styled.div`
   padding: 0 40px;
   background-color: #26272b;
   color: white;
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    width: 100%;
+  }
 `;
 
 export const Menu = styled.ul``;
@@ -33,6 +36,10 @@ export const MenuItens = styled.li`
   font-weight: 500;
   font-size: 1.6em;
   cursor: pointer;
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    display: flex;
+    flex-direction: row;
+  }
 `;
 
 export const ImgLogo = styled.img`

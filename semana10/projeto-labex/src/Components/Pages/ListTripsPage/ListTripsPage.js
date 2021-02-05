@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
-import {TripPageContainer} from "../ListTripsPage/ListTripsPagesStyled"
+import { TripPageContainer } from "../ListTripsPage/ListTripsPagesStyled";
 import AsideSection from "./AsideSections";
 import ContentTrips from "./ContentTrips";
 

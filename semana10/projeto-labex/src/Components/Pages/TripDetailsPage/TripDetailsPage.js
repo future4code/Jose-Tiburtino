@@ -40,9 +40,7 @@ const TripDetailsPage = () => {
         setTrip(response.data.trip);
         setCandidatesList(response.data.trip.candidates);
       })
-      .catch((error) => {
-        console.log("Erro, tripdetails", error);
-      });
+      .catch((error) => {});
   };
 
   useEffect(() => {
@@ -92,7 +90,10 @@ const TripDetailsPage = () => {
           <AsideSection />
           <DivToFix>
             <h2>{trip.name}</h2>
+            <hr></hr>
             <h3>Data: {trip.date}</h3>
+            <hr></hr>
+            <h3>Duração {trip.durationInDays} dias</h3> <hr></hr>
             {!showCandidate && candidatesList && (
               <>
                 <h3>Candidatos: </h3>
@@ -105,7 +106,8 @@ const TripDetailsPage = () => {
                   <option value="aguardando">Aguardando</option>
                   <option value="aprovados">Aprovados</option>
                 </select>
-                <p>Clique no nome para visualizar os detalhes do inscrito.</p>
+                <hr></hr>
+                <p>Clique no nome para visualizar os detalhes do candidato.</p>
                 <DivCandidates>
                   {candidatesList.map((candidate) => {
                     return (
@@ -118,7 +120,7 @@ const TripDetailsPage = () => {
                         >
                           <p>{candidate.name}</p>
                         </ItemCandidate>
-                        <Icons mostrar={filterCandidates}>
+                        <Icons show={filterCandidates}>
                           <Approved
                             onClick={() => {
                               decideCandidates(true, candidate.id);

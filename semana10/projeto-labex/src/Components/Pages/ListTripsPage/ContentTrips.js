@@ -25,7 +25,7 @@ const ContentTrips = () => {
         `https://us-central1-labenu-apis.cloudfunctions.net/labeX/jose-tiburtino-epps/trips/${id}`
       )
       .then((response) => {
-        alert("Viagem deletada.");
+        alert("Viagem deletada, atualize a página.");
       })
       .catch((error) => {
         alert("Erro ao deletar, tente novamente!");
@@ -34,7 +34,7 @@ const ContentTrips = () => {
 
   return (
     <div>
-      <Title>Gerenciamento de Viagens</Title>
+      <Title>Viagens</Title>
       <DivTrips lines={Math.ceil(list.length / 4)}>
         {list.map((trip) => {
           const urlImage = `https://picsum.photos/300/200`;
@@ -52,7 +52,7 @@ const ContentTrips = () => {
                 </p>
                 <p>
                   <strong>Duração: </strong>
-                  {trip.durationInDays}
+                  {trip.durationInDays} dias
                 </p>
                 <p>
                   <strong>Data:</strong> {trip.date}

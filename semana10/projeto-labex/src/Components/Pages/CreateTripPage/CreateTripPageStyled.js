@@ -9,6 +9,9 @@ export const MainContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-left: 25%;
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    margin-left: 0%;
+  }
 `;
 
 export const Title = styled.h1`
@@ -23,4 +26,7 @@ export const CreateTripForm = styled.form`
   width: 30vw;
   background-color: white;
   border-radius: 5px;
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    width: 100%;
+  }
 `;

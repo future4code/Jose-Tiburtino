@@ -2,7 +2,11 @@ import React from "react";
 import axios from "axios";
 import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
-import { MainContainer, Title, ApplyForm } from "./ApplicationFormPageStyled";
+import {
+  ApplicationFormContainer,
+  Title,
+  ApplyForm,
+} from "./ApplicationFormPageStyled";
 import {
   TextField,
   InputLabel,
@@ -56,7 +60,7 @@ const ApplicationFormPage = () => {
   return (
     <div>
       <Header />
-      <MainContainer>
+      <ApplicationFormContainer>
         <Title variant="h3">Formulário de Inscrição</Title>
         <ApplyForm onSubmit={sendForm}>
           <TextField
@@ -138,7 +142,7 @@ const ApplicationFormPage = () => {
             </Button>
           </MuiThemeProvider>
         </ApplyForm>
-      </MainContainer>
+      </ApplicationFormContainer>
       <Footer />
     </div>
   );
