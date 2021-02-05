@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
-import styled from "styled-components";
+import { MainContainer, Title, ApplyForm } from "./ApplicationFormPageStyled";
 import {
   TextField,
   InputLabel,
@@ -15,26 +15,6 @@ import {
 import { CountryList } from "./CountryList";
 import { useForm } from "../../Hooks/useForm";
 import { useListTrips } from "../../Hooks/useListTrips";
-
-const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 88.6vh;
-`;
-
-const Title = styled.h1``;
-
-const ApplyForm = styled.form`
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  width: 30vw;
-  background-color: white;
-  border-radius: 5px;
-`;
 
 const ApplicationFormPage = () => {
   const { form, changeState, clearInput } = useForm({
@@ -129,7 +109,7 @@ const ApplicationFormPage = () => {
               value={form.country}
               onChange={changeState}
             >
-              <MenuItem value="Brasil">Brasil</MenuItem>
+              <MenuItem value="Brasil"></MenuItem>
               {CountryList}
             </Select>
           </FormControl>

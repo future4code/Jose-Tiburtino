@@ -3,7 +3,12 @@ import axios from "axios";
 import { useForm } from "../../Hooks/useForm";
 import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
-import styled from "styled-components";
+import {
+  MainContainer,
+  Title,
+  CreateTripContainer,
+  CreateTripForm,
+} from "./CreateTripPageStyled";
 import AsideSection from "../ListTripsPage/AsideSections";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
 import {
@@ -18,31 +23,6 @@ import {
 import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { ptBR } from "date-fns/locale";
-
-const CreateTripContainer = styled.div`
-  display: flex;
-`;
-
-const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 25%;
-`;
-
-const Title = styled.h1`
-  margin-top: 50px;
-`;
-
-const CreateTripForm = styled.form`
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  width: 30vw;
-  background-color: white;
-  border-radius: 5px;
-`;
 
 const CreateTripPage = () => {
   useProtectedPage();
@@ -130,6 +110,7 @@ const CreateTripPage = () => {
                 label="Data da viagem"
                 name="date"
                 format="dd/MM/yyyy"
+                minDate={new Date()}
               />
             </MuiPickersUtilsProvider>
             <TextField

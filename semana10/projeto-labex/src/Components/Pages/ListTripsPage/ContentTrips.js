@@ -1,54 +1,40 @@
 import React from "react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 import { useListTrips } from "../../Hooks/useListTrips";
-import styled from "styled-components";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
-
-const DivTrips = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(${(props) => props.lines}, 1fr);
-  gap: 50px;
-  column-gap: 100px;
-  justify-content: center;
-  padding: 15px;
-`;
-
-const CardTrip = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-    rgba(0, 0, 0, 0.22) 0px 15px 12px;
-`;
-
-const ImageTrip = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Image = styled.img``;
-
-const Description = styled.div`
-  width: 100%;
-  padding: 0 10px;
-  text-align: left;
-`;
-
-const Title = styled.h1`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import {
+  Title,
+  DivTrips,
+  CardTrip,
+  ImageTrip,
+  Image,
+  Description,
+  ButtonDetails,
+  DeleteItem,
+} from "../ListTripsPage/ListTripsPagesStyled";
 
 const ContentTrips = () => {
+  const history = useHistory();
   const list = useListTrips();
   useProtectedPage();
 
+  const deleteTrip = (id) => {
+    axios
+      .delete(
+        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/jose-tiburtino-epps/trips/${id}`
+      )
+      .then((response) => {
+        alert("Viagem deletada.");
+      })
+      .catch((error) => {
+        alert("Erro ao deletar, tente novamente!");
+      });
+  };
+
   return (
     <div>
-      <Title>Lista de viagens</Title>
+      <Title>Gerenciamento de Viagens</Title>
       <DivTrips lines={Math.ceil(list.length / 4)}>
         {list.map((trip) => {
           const urlImage = `https://picsum.photos/300/200`;
@@ -71,6 +57,12 @@ const ContentTrips = () => {
                 <p>
                   <strong>Data:</strong> {trip.date}
                 </p>
+                <ButtonDetails
+                  onClick={() => history.push(`/trips/details/${trip.id}`)}
+                >
+                  DETALHES
+                </ButtonDetails>
+                <DeleteItem onClick={() => deleteTrip(trip.id)}></DeleteItem>
               </Description>
             </CardTrip>
           );

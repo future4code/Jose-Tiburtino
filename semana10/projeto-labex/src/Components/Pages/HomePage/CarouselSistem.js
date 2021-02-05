@@ -7,7 +7,7 @@ import Business from "../../../Img/ImgBlurLabex.png";
 import SocialMedia from "../../../Img/SocialMediaLabex.png";
 import Office from "../../../Img/OfficeLabex.png";
 import { useHistory } from "react-router-dom";
-import { CarroselDiv, Button } from "./CarouselSistemStyled";
+import { CarroselDiv, Button } from "./HomePageStyled";
 import { goToApplicationFormPage } from "../../Router/Coordinator";
 
 const CarouselSistem = () => {
