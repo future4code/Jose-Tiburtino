@@ -1,5 +1,5 @@
 import ImageErrorEddit from "../../Assets/ErrorImage.png";
-import { goToHome } from "../../Router/Coordinator";
+import { goToLogin } from "../../Router/Coordinator";
 import { useHistory } from "react-router-dom";
 import { ErrorContainer, ErrorMain, ImageError, Button } from "./styled";
 
@@ -11,7 +11,7 @@ const ErrorPage = () => {
       <ErrorMain>
         <ErrorContainer>
           <ImageError src={ImageErrorEddit} alt="Erro" />
-          <Button onClick={() => goToHome(history)}>
+          <Button onClick={() => goToLogin(history)}>
             VOLTE A PÁGINA INICIAL
           </Button>
         </ErrorContainer>
