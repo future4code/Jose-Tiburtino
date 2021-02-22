@@ -15,7 +15,7 @@ const Router = () => {
         <Route exact patch="/cadastro">
           <SignUpPage />
         </Route>
-        <Route exact patch="/">
+        <Route exact patch="/feed">
           <FeedPage />
         </Route>
         <Route>
