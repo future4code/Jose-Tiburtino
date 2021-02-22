@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { useStyles } from "./styled";
+import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Header from "../../Components/Header/Header";
 import useForm from "../../Hooks/useForm";
@@ -31,7 +32,7 @@ const LoginPage = () => {
       password: form.password,
     };
     axios
-      .post(`${BASE_URL}`, body)
+      .post(`${BASE_URL}/login`, body)
       .then((response) => {
         localStorage.setItem("token", response.data.token);
         goToFeed(history);
@@ -51,6 +52,9 @@ const LoginPage = () => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
+          <Typography component="h1" variant="h5">
+            Entre com sua conta
+          </Typography>
           <form className={classes.form} onSubmit={logIn} noValidate>
             <TextField
               variant="outlined"
