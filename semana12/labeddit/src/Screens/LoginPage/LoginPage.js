@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,34 +12,23 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Header from "../../Components/Header/Header";
 import useForm from "../../Hooks/useForm";
-import axios from "axios";
-import { goToFeed, goToSignUp } from "../../Router/Coordinator";
+import { logIn } from "../../Services/User";
+import { goToSignUp } from "../../Router/Coordinator";
 import { useHistory } from "react-router-dom";
-import { BASE_URL } from "../../Constant/Constant";
+import { CircularProgress } from "@material-ui/core";
 
 const LoginPage = () => {
   const { form, changeState, clearInput } = useForm({
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const classes = useStyles();
 
-  const logIn = (event) => {
+  const handleLogIn = (event) => {
     event.preventDefault();
-    const body = {
-      email: form.email,
-      password: form.password,
-    };
-    axios
-      .post(`${BASE_URL}/login`, body)
-      .then((response) => {
-        localStorage.setItem("token", response.data.token);
-        goToFeed(history);
-      })
-      .catch((error) => {
-        alert("Falha ao logar, tente novamente!");
-      });
+    logIn(form, history, setLoading);
     clearInput();
   };
 
@@ -55,7 +44,7 @@ const LoginPage = () => {
           <Typography component="h1" variant="h5">
             Entre com sua conta
           </Typography>
-          <form className={classes.form} onSubmit={logIn} noValidate>
+          <form className={classes.form} onSubmit={handleLogIn} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
@@ -89,7 +78,8 @@ const LoginPage = () => {
               color="primary"
               className={classes.submit}
             >
-              Entrar
+              {" "}
+              {loading ? <CircularProgress /> : <>ENTRAR</>}
             </Button>
             <Grid container>
               <Grid item>

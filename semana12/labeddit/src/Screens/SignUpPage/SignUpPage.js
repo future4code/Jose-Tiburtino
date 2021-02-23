@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../Components/Header/Header";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -11,11 +11,11 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "./styled";
 import Container from "@material-ui/core/Container";
-import { goToFeed, goToLogin } from "../../Router/Coordinator";
+import { goToLogin } from "../../Router/Coordinator";
 import { useHistory } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
-import axios from "axios";
-import { BASE_URL } from "../../Constant/Constant";
+import { signUp } from "../../Services/User";
+import { CircularProgress } from "@material-ui/core";
 
 const SignUpPage = () => {
   const classes = useStyles();
@@ -25,24 +25,11 @@ const SignUpPage = () => {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const signUpForm = (event) => {
     event.preventDefault();
-    const body = {
-      email: form.email,
-      password: form.password,
-      username: form.username,
-    };
-    axios
-      .post(`${BASE_URL}/signup`, body)
-      .then((response) => {
-        localStorage.setItem("token", response.data.token);
-        goToFeed(history);
-        window.alert("Bem-vindo ao LabEddit!");
-      })
-      .catch((error) => {
-        alert("Erro ao criar o cadastro, tente novamente.");
-      });
+    signUp(form, history, setLoading);
     clearInput();
   };
 
@@ -109,7 +96,7 @@ const SignUpPage = () => {
               color="primary"
               className={classes.submit}
             >
-              Cadastrar
+              {loading ? <CircularProgress /> : <>CADASTRAR</>}
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
