@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 
-const useProtectedPage = () => {
+export const useProtectedPage = () => {
   const history = useHistory();
 
   useEffect(() => {
@@ -13,5 +13,3 @@ const useProtectedPage = () => {
     }
   }, [history]);
 };
-
-export default useProtectedPage
