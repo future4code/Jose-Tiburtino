@@ -1,24 +1,78 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import {
-  PostContainer,
   CountContainer,
   VotesContainer,
-  ClickContainer,
+  ContentContainer,
   PostedContainer,
   PostedText,
+  ArrowContainer,
+  Deslike,
+  Like,
+  CardContainer,
+  TextContainer,
 } from "./styled";
-import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
-import { IconButton, Card, Typography } from "@material-ui/core";
-import { green, red } from "@material-ui/core/colors";
+import { IconButton, Typography } from "@material-ui/core";
+import { voteForPost } from "../../Services/Feed";
 
 const Post = (props) => {
-  const history = useHistory();
+  const handleVotePost = (decision) => {
+    const body = {
+      direction: decision,
+    };
+    voteForPost(body, props.id, props.update);
+  };
+
+  const arrowForVote = () => {
+    if (props.direction === 0) {
+      return (
+        <ArrowContainer>
+          <IconButton>
+            <Like fontSize="inherit" onClick={() => handleVotePost(1)} />
+          </IconButton>
+          <p>
+            <b>{props.votesCount}</b>{" "}
+          </p>
+          <IconButton>
+            <Deslike fontSize="inherit" onClick={() => handleVotePost(-1)} />
+          </IconButton>
+        </ArrowContainer>
+      );
+    } else if (props.direction === 1) {
+      return (
+        <ArrowContainer>
+          <IconButton>
+            <Like fontSize="inherit" onClick={() => handleVotePost(0)} />
+          </IconButton>
+          <p>
+            <b>{props.votesCount}</b>{" "}
+          </p>
+          <IconButton>
+            <Deslike fontSize="inherit" onClick={() => handleVotePost(-1)} />
+          </IconButton>
+        </ArrowContainer>
+      );
+    } else {
+      return (
+        <ArrowContainer>
+          <IconButton>
+            <Like fontSize="inherit" onClick={() => handleVotePost(1)} />
+          </IconButton>
+          <p>
+            <b>{props.votesCount}</b>{" "}
+          </p>
+          <IconButton>
+            <Deslike fontSize="inherit" onClick={() => handleVotePost(0)} />
+          </IconButton>
+        </ArrowContainer>
+      );
+    }
+  };
 
   return (
-    <PostContainer>
-      <Card variant="contained">
-        <ClickContainer>
+    <CardContainer variant="contained">
+      <VotesContainer>{arrowForVote()}</VotesContainer>
+      <ContentContainer>
+        <TextContainer>
           <Typography color="textSecondary" gutterBottom>
             <PostedContainer>
               <PostedText>
@@ -34,31 +88,12 @@ const Post = (props) => {
           <Typography variant="body2" component="p">
             <p>{props.text}</p>
           </Typography>
-        </ClickContainer>
+        </TextContainer>
         <CountContainer>
-          <VotesContainer>
-            <IconButton>
-              {props.direction === 1 ? (
-                <ArrowUpward fontSize="inherit" style={{ color: green[500] }} />
-              ) : (
-                <ArrowUpward fontSize="inherit" color="inherit" />
-              )}
-            </IconButton>
-            <p>
-              <b>{props.votesCount}</b>
-            </p>
-            <IconButton>
-              {props.direction === -1 ? (
-                <ArrowDownward fontSize="inherit" style={{ color: red[500] }} />
-              ) : (
-                <ArrowDownward fontSize="inherit" color="inherit" />
-              )}
-            </IconButton>
-          </VotesContainer>
           <p>{props.commentsCount} comentários</p>
         </CountContainer>
-      </Card>
-    </PostContainer>
+      </ContentContainer>
+    </CardContainer>
   );
 };
 

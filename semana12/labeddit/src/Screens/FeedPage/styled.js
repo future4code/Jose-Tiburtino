@@ -4,6 +4,8 @@ import { Fab } from "@material-ui/core";
 export const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 export const NewPostContainer = styled.form`
   display: flex;

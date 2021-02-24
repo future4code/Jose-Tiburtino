@@ -1,30 +1,43 @@
 import styled from "styled-components";
-import { CardContent } from "@material-ui/core";
+import { CardContent, Card } from "@material-ui/core";
+import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 
-export const PostContainer = styled.div`
+export const CountContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+export const VotesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80vw;
-  max-width: 465px;
+  width: 10%;
+  padding: 0.2em;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-radius: 7px;
+`;
+
+export const CardContainer = styled(Card)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  max-width: 600px;
+  background-color: white;
+  border: 1px solid #d7d7d7;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15px;
   margin-bottom: 15px;
-  padding: 15px;
-`;
-export const CountContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-`;
-export const VotesContainer = styled.div`
-  display: flex;
-`;
-export const ClickContainer = styled(CardContent)`
-  cursor: pointer;
   &:hover {
-    background-color: lightgrey;
+    border: 1px solid #a7a9ab;
   }
+`;
+
+export const ContentContainer = styled(CardContent)`
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  width: 100%;
 `;
 export const PostedContainer = styled.div`
   display: flex;
@@ -36,4 +49,26 @@ export const PostedContainer = styled.div`
 `;
 export const PostedText = styled.p`
   margin-right: 8px;
+`;
+
+export const ArrowContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Deslike = styled(ArrowDownward)`
+  color: red;
+`;
+
+export const Like = styled(ArrowUpward)`
+  color: green;
+`;
+
+export const TextContainer = styled.div`
+  cursor: pointer;
+  &:hover {
+    background-color: lightgrey;
+  }
 `;

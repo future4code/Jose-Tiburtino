@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../../Components/Header/Header";
 import PostCard from "../../Components/PostCard/PostCard";
@@ -16,9 +15,8 @@ import {
   CircularProgress,
   Typography,
 } from "@material-ui/core";
-import { BASE_URL } from "../../Constant/Constant";
 import Loading from "../../Components/Loading/Loading";
-import { createPost } from "../../Services/Feed";
+import { createPost, getPosts } from "../../Services/Feed";
 import { useHistory } from "react-router-dom";
 
 const FeedPage = () => {
@@ -30,22 +28,13 @@ const FeedPage = () => {
   const { form, changeState, clearInput } = useForm({ text: "", title: "" });
 
   useEffect(() => {
-    setInterval(updatePage, 60000);
-    getPosts();
+    setInterval(updatePage, 200000);
+    handleGetPosts();
     goTop();
   }, []);
 
-  const getPosts = () => {
-    axios
-      .get(`${BASE_URL}/posts`, {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        setPosts(response.data.posts);
-      })
-      .catch((error) => {});
+  const handleGetPosts = () => {
+    getPosts(setPosts);
   };
 
   const handleCreatePost = (event) => {
@@ -54,19 +43,19 @@ const FeedPage = () => {
     clearInput();
   };
 
-  const searchFilter = (e) => {
+  const searchFilter = (event) => {
     const searchArray = posts.filter((post) => {
       const title = post.title.toLowerCase();
       const text = post.text.toLowerCase();
       const username = post.username.toLowerCase();
       return (
-        title.includes(e.target.value.toLowerCase()) ||
-        text.includes(e.target.value.toLowerCase()) ||
-        username.includes(e.target.value.toLowerCase())
+        title.includes(event.target.value.toLowerCase()) ||
+        text.includes(event.target.value.toLowerCase()) ||
+        username.includes(event.target.value.toLowerCase())
       );
     });
     setFilteredPosts(searchArray);
-    setSearchContent(e.target.value);
+    setSearchContent(event.target.value);
   };
 
   let myButton = document.getElementById("back-to-top");
@@ -93,7 +82,7 @@ const FeedPage = () => {
   };
 
   const updatePage = () => {
-    getPosts();
+    handleGetPosts();
   };
 
   return (
@@ -150,7 +139,7 @@ const FeedPage = () => {
                     id={post.id}
                     title={post.title}
                     direction={post.userVoteDirection}
-                    getPosts={getPosts}
+                    getPosts={handleGetPosts}
                   />
                 );
               })
@@ -170,7 +159,7 @@ const FeedPage = () => {
                       id={post.id}
                       title={post.title}
                       direction={post.userVoteDirection}
-                      getPosts={getPosts}
+                      getPosts={handleGetPosts}
                     />
                   );
                 })}
