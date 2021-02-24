@@ -18,10 +18,13 @@ import {
 } from "@material-ui/core";
 import { BASE_URL } from "../../Constant/Constant";
 import Loading from "../../Components/Loading/Loading";
+import { createPost } from "../../Services/Feed";
+import { useHistory } from "react-router-dom";
 
 const FeedPage = () => {
   useProtectedPage();
   const [posts, setPosts] = useState([]);
+  const history = useHistory();
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [searchContent, setSearchContent] = useState("");
   const { form, changeState, clearInput } = useForm({ text: "", title: "" });
@@ -45,25 +48,10 @@ const FeedPage = () => {
       .catch((error) => {});
   };
 
-  const createPost = (event) => {
+  const handleCreatePost = (event) => {
     event.preventDefault();
-    const body = {
-      text: form.text,
-      title: form.title,
-    };
-
-    axios
-      .post(`${BASE_URL}/posts`, body, {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        alert("Post criado com sucesso");
-        getPosts();
-        clearInput();
-      })
-      .catch((error) => {});
+    createPost(form, history);
+    clearInput();
   };
 
   const searchFilter = (e) => {
@@ -112,7 +100,7 @@ const FeedPage = () => {
     <div>
       <Header handleSearch={searchFilter} />
       <FeedPageContainer>
-        <NewPostContainer onSubmit={createPost}>
+        <NewPostContainer onSubmit={handleCreatePost}>
           <h3>Crie seu post.</h3>
           <TextField
             name="title"
