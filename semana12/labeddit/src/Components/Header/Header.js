@@ -2,14 +2,13 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { HeaderContainer } from "./styled";
 import { goToLogin } from "../../Router/Coordinator";
-import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import { useStyles } from "./styled";
+import { useStyles, Logo, NavBar, Button, ToolConfigBar } from "./styled";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { goToFeed } from "../../Router/Coordinator";
+import logo from "../../Assets/logolabeddit.png";
+import swal from "sweetalert";
 
 const Header = (props) => {
   const history = useHistory();
@@ -19,37 +18,27 @@ const Header = (props) => {
   const logOut = () => {
     localStorage.removeItem("token");
     goToLogin(history);
-    alert("Deslogou!");
+    swal({
+      title: "Você deslogou!",
+      text: "Volte sempre.",
+      icon: "warning",
+    });
   };
 
   return (
     <div>
       <HeaderContainer>
         {!token && (
-          <AppBar position="static">
+          <NavBar position="static">
             <Toolbar>
-              <Typography
-                variant="h6"
-                className={classes.title}
-                onClick={() => goToFeed(history)}
-              >
-                LabEddit
-              </Typography>
-              <Button color="inherit">Login</Button>
-              <Button color="inherit">Cadastre-se</Button>
+              <Logo src={logo} />
             </Toolbar>
-          </AppBar>
+          </NavBar>
         )}
         {token && (
-          <AppBar position="static">
-            <Toolbar>
-              <Typography
-                variant="h6"
-                className={classes.title}
-                onClick={() => goToFeed(history)}
-              >
-                LabEddit
-              </Typography>
+          <NavBar position="static">
+            <ToolConfigBar>
+              <Logo onClick={() => goToFeed(history)} src={logo} />
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
                   <SearchIcon />
@@ -65,10 +54,10 @@ const Header = (props) => {
                 />
               </div>
               <Button color="inherit" onClick={logOut}>
-                Logout
+                Log Out
               </Button>
-            </Toolbar>
-          </AppBar>
+            </ToolConfigBar>
+          </NavBar>
         )}
       </HeaderContainer>
     </div>

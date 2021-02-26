@@ -19,9 +19,9 @@ import {
   CommentsSection,
 } from "./styled";
 import PostCard from "../../Components/PostCard/PostCard";
-import { createComment } from "../../Services/Feed";
+import swal from "sweetalert";
 
-const PostDetailsPage = (props) => {
+const PostDetailsPage = () => {
   useProtectedPage();
   const params = useParams();
   const [postDetails, setPostDetails] = useState([]);
@@ -32,6 +32,33 @@ const PostDetailsPage = (props) => {
   useEffect(() => {
     getPostDetails();
   }, []);
+
+  const createComment = (event) => {
+    event.preventDefault();
+    const body = {
+      text: form.text,
+    };
+    axios
+      .post(`${BASE_URL}/posts/${postDetails.id}/comment`, body, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        swal({
+          title: "Comentário feito.",
+          icon: "success",
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        getPostDetails();
+        clearInput();
+      })
+      .catch((error) => {
+        alert("Erro ao criar post!");
+      });
+  };
 
   const getPostDetails = () => {
     axios
@@ -46,12 +73,6 @@ const PostDetailsPage = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  };
-
-  const handleSubmissionComment = (event) => {
-    event.preventDefault();
-    createComment(form, postDetails.id);
-    clearInput();
   };
 
   const voteSearchFilter = (event) => {
@@ -84,7 +105,7 @@ const PostDetailsPage = (props) => {
           direction={postDetails.userVoteDirection}
           getPostsDetails={getPostDetails}
         />
-        <PostComment onSubmit={handleSubmissionComment}>
+        <PostComment onSubmit={createComment}>
           <TextField
             name="text"
             value={form.text}
@@ -116,7 +137,6 @@ const PostDetailsPage = (props) => {
                 console.log(post);
                 return (
                   <CommentCard
-                    key={post.id}
                     username={post.username}
                     text={post.text}
                     votesCount={post.votesCount}
@@ -136,7 +156,6 @@ const PostDetailsPage = (props) => {
                 .map((post) => {
                   return (
                     <CommentCard
-                      key={post.id}
                       username={post.username}
                       text={post.text}
                       votesCount={post.votesCount}

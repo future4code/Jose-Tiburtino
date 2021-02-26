@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const PostDetailsPageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 9vh;
+  padding-top: 2vh;
   height: 100%;
   min-height: 100vh;
   background-color: #dbe0e6;
@@ -18,8 +18,12 @@ export const CommentsSection = styled.div`
 export const PostComment = styled.form`
   display: flex;
   flex-direction: column;
-  padding-top: 9vh;
-  height: 100%;
-  min-height: 100vh;
-  background-color: #dbe0e6;
+  width: 80vw;
+  max-width: 575px;
+  margin: 0px auto;
+  justify-content: center;
+  padding: 1em;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;

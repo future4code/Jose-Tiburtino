@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { makeStyles, fade } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import { Toolbar } from "@material-ui/core";
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -10,17 +12,41 @@ export const HeaderContainer = styled.div`
   border-bottom: 1px solid #edeff1;
 `;
 
-export const Logo = styled.h3``;
+export const Logo = styled.img`
+  cursor: pointer;
+  @media screen and (min-device-width: 320px) and (max-device-width: 420px) {
+    height: 6vh;
+  }
+  @media screen and (min-device-width: 421px) and (max-device-width: 800px) {
+    height: 6vh;
+  }
+`;
 
 export const Button = styled.button`
   border-radius: 9999px;
-  border: 2px solid black;
+  height: 30px;
+  width: 100px;
+  font-size: 0.9em;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
   font-family: "Noto Sans", sans-serif;
   cursor: pointer;
 `;
 
 export const ContainerButton = styled.div`
   display: flex;
+`;
+
+export const NavBar = styled(AppBar)`
+  display: flex;
+  justify-content: space-evenly;
+  background-color: white;
+`;
+
+export const ToolConfigBar = styled(Toolbar)`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const useStyles = makeStyles((theme) => ({
@@ -34,7 +60,7 @@ export const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   inputRoot: {
-    color: "inherit",
+    color: "#878a8c",
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -48,10 +74,9 @@ export const useStyles = makeStyles((theme) => ({
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
+    backgroundColor: "#f6f7f8",
+    boxShadow:
+      "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
     marginLeft: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
@@ -61,6 +86,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
+    color: "#878a8c",
     height: "100%",
     position: "absolute",
     pointerEvents: "none",

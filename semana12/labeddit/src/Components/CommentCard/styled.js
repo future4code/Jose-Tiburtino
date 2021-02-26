@@ -6,8 +6,12 @@ export const UserThings = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0.1em;
-  padding-bottom: 0.2em;
+  justify-content: center;
+  padding-bottom: 1em;
+`;
+
+export const PostedText = styled.p`
+  margin-right: 8px;
 `;
 
 export const ArrowContainer = styled.div`
@@ -49,12 +53,7 @@ export const Like = styled(ArrowUpward)`
   color: green;
 `;
 
-export const TextContainer = styled.div`
-  cursor: pointer;
-  &:hover {
-    background-color: lightgrey;
-  }
-`;
+export const TextContainer = styled.div``;
 
 export const VotesContainer = styled.div`
   display: flex;
@@ -66,8 +65,4 @@ export const VotesContainer = styled.div`
   border-radius: 7px;
 `;
 
-export const Heading = styled.div`
-
-`
-
-export const Text = styled.div``
+export const Text = styled.div``;

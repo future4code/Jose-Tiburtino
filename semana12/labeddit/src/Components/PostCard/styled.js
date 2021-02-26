@@ -5,6 +5,8 @@ import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 export const CountContainer = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
+  cursor: pointer;
 `;
 export const VotesContainer = styled.div`
   display: flex;

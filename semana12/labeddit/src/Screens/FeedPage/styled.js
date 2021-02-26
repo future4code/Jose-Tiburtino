@@ -11,22 +11,34 @@ export const NewPostContainer = styled.form`
   display: flex;
   flex-direction: column;
   width: 80vw;
-  max-width: 465px;
+  max-width: 575px;
   margin: 0px auto;
   justify-content: center;
   padding: 1em;
   background-color: white;
+  border-radius: 3px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
+
+export const SpacingBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+`;
+
+export const H3 = styled.h3`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const FeedPageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 9vh;
+  padding-top: 2vh;
   height: 100%;
   min-height: 100vh;
   background-color: #dbe0e6;
-  @media (max-width: 500px) {
-    padding-top: 24vh;
-  }
 `;
 export const BackToTop = styled(Fab)`
   display: none;

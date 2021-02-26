@@ -1,6 +1,7 @@
 import axios from "axios";
 import { goToFeed } from "../Router/Coordinator";
 import { BASE_URL } from "../Constant/Constant";
+import swal from "sweetalert";
 
 export const logIn = (body, history, setLoading) => {
   setLoading(true);
@@ -13,7 +14,12 @@ export const logIn = (body, history, setLoading) => {
     })
     .catch((error) => {
       setLoading(false);
-      alert("Informações incorretas, digite novamente.");
+      swal({
+        title: "Os dados estão errados!",
+        text: "Tente novamente.",
+        icon: "error",
+        dangerMode: true,
+      });
     });
 };
 
@@ -28,6 +34,11 @@ export const signUp = (body, history, setLoading) => {
     })
     .catch((error) => {
       setLoading(false);
-      alert("E-mail já foi utilizado, crie novamente.");
+      swal({
+        title: "Os dados foram preenchidos errados!",
+        text: "Tente novamente.",
+        icon: "error",
+        dangerMode: true,
+      });
     });
 };
