@@ -2,18 +2,19 @@ import styled from "styled-components";
 import { CardContent, Card } from "@material-ui/core";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 
-export const CountContainer = styled.div`
+export const UserThings = styled.div`
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.1em;
+  padding-bottom: 0.2em;
 `;
-export const VotesContainer = styled.div`
+
+export const ArrowContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 10%;
-  padding: 0.2em;
   align-items: center;
-  background-color: #f8f9fa;
-  border-radius: 7px;
+  justify-content: center;
 `;
 
 export const CardContainer = styled(Card)`
@@ -40,25 +41,6 @@ export const ContentContainer = styled(CardContent)`
   width: 100%;
 `;
 
-export const PostedContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 5px;
-  @media (max-width: 500px) {
-    flex-direction: column;
-  }
-`;
-export const PostedText = styled.p`
-  margin-right: 8px;
-`;
-
-export const ArrowContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const Deslike = styled(ArrowDownward)`
   color: red;
 `;
@@ -73,3 +55,19 @@ export const TextContainer = styled.div`
     background-color: lightgrey;
   }
 `;
+
+export const VotesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  padding: 0.2em;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-radius: 7px;
+`;
+
+export const Heading = styled.div`
+
+`
+
+export const Text = styled.div``

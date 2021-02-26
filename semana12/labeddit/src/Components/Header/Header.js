@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import { useStyles } from "./styled";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
+import { goToFeed } from "../../Router/Coordinator";
 
 const Header = (props) => {
   const history = useHistory();
@@ -27,7 +28,11 @@ const Header = (props) => {
         {!token && (
           <AppBar position="static">
             <Toolbar>
-              <Typography variant="h6" className={classes.title}>
+              <Typography
+                variant="h6"
+                className={classes.title}
+                onClick={() => goToFeed(history)}
+              >
                 LabEddit
               </Typography>
               <Button color="inherit">Login</Button>
@@ -38,7 +43,11 @@ const Header = (props) => {
         {token && (
           <AppBar position="static">
             <Toolbar>
-              <Typography variant="h6" className={classes.title}>
+              <Typography
+                variant="h6"
+                className={classes.title}
+                onClick={() => goToFeed(history)}
+              >
                 LabEddit
               </Typography>
               <div className={classes.search}>

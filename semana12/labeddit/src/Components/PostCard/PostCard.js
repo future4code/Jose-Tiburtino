@@ -13,13 +13,16 @@ import {
 } from "./styled";
 import { IconButton, Typography } from "@material-ui/core";
 import { voteForPost } from "../../Services/Feed";
+import { goToDetailsPost } from "../../Router/Coordinator";
+import { useHistory } from "react-router-dom";
 
 const Post = (props) => {
+  const history = useHistory();
   const handleVotePost = (decision) => {
     const body = {
       direction: decision,
     };
-    voteForPost(body, props.id, props.update);
+    voteForPost(body, props.id);
   };
 
   const arrowForVote = () => {
@@ -72,7 +75,7 @@ const Post = (props) => {
     <CardContainer variant="contained">
       <VotesContainer>{arrowForVote()}</VotesContainer>
       <ContentContainer>
-        <TextContainer>
+        <TextContainer onClick={() => goToDetailsPost(history,props.id)}>
           <Typography color="textSecondary" gutterBottom>
             <PostedContainer>
               <PostedText>

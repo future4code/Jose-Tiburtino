@@ -13,7 +13,9 @@ export const getPosts = (setPosts) => {
       console.log(response);
       setPosts(response.data.posts);
     })
-    .catch((error) => {});
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 export const createPost = (body) => {
@@ -27,7 +29,9 @@ export const createPost = (body) => {
       alert("Post criado.");
       getPosts();
     })
-    .catch((error) => {});
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 export const voteForPost = (body, postId) => {
@@ -40,7 +44,34 @@ export const voteForPost = (body, postId) => {
     .then((response) => {
       getPosts();
     })
+    .catch((error) => {});
+};
+
+export const createComment = (body, postId) => {
+  axios
+    .post(`${BASE_URL}/posts/${postId}/comment`, body, {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    .then((response) => {
+      alert("comentário criado, legal");
+    })
     .catch((error) => {
       console.log(error);
+      alert("Erro ao criar comentário");
+    });
+};
+
+export const voteForComment = (body, postId, commentId) => {
+  axios
+    .put(`${BASE_URL}/posts/${postId}/comment/${commentId}/vote`, body, {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    .then((response) => {})
+    .catch((error) => {
+      alert("Erro ao votar no comentário");
     });
 };
