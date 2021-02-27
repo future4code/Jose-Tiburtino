@@ -32,6 +32,12 @@ export const Button = styled.button`
     rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
   font-family: "Noto Sans", sans-serif;
   cursor: pointer;
+  @media screen and (min-device-width: 320px) and (max-device-width: 420px) {
+    margin-top: 5px;
+  }
+  @media screen and (min-device-width: 421px) and (max-device-width: 800px) {
+    margin-top: 10px;
+  }
 `;
 
 export const ContainerButton = styled.div`
@@ -42,11 +48,48 @@ export const NavBar = styled(AppBar)`
   display: flex;
   justify-content: space-evenly;
   background-color: white;
+  @media screen and (min-device-width: 320px) and (max-device-width: 420px) {
+    flex-direction: column;
+  }
+  @media screen and (min-device-width: 421px) and (max-device-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 export const ToolConfigBar = styled(Toolbar)`
   display: flex;
   justify-content: space-between;
+  @media screen and (min-device-width: 320px) and (max-device-width: 420px) {
+    flex-direction: column;
+  }
+  @media screen and (min-device-width: 421px) and (max-device-width: 800px) {
+    flex-direction: column;
+  }
+`;
+
+export const UserOptions = styled.div`
+  display: flex;
+  color: black;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+  @media screen and (min-device-width: 320px) and (max-device-width: 420px) {
+    flex-direction: column;
+    padding: 4px;
+  }
+  @media screen and (min-device-width: 421px) and (max-device-width: 800px) {
+    flex-direction: column;
+  }
+`;
+
+export const UserName = styled.div`
+  padding-right: 50px;
+  @media screen and (min-device-width: 320px) and (max-device-width: 420px) {
+    padding-right: 0;
+  }
+  @media screen and (min-device-width: 421px) and (max-device-width: 800px) {
+    padding-right: 0;
+  }
 `;
 
 export const useStyles = makeStyles((theme) => ({

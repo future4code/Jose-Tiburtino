@@ -16,8 +16,10 @@ import { useHistory } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
 import { signUp } from "../../Services/User";
 import { CircularProgress } from "@material-ui/core";
+import { useUnprotectedPage } from "../../Hooks/useUnprotectedPage";
 
 const SignUpPage = () => {
+  useUnprotectedPage();
   const classes = useStyles();
   const history = useHistory();
   const { form, changeState, clearInput } = useForm({

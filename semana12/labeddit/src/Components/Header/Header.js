@@ -3,7 +3,15 @@ import { useHistory } from "react-router-dom";
 import { HeaderContainer } from "./styled";
 import { goToLogin } from "../../Router/Coordinator";
 import Toolbar from "@material-ui/core/Toolbar";
-import { useStyles, Logo, NavBar, Button, ToolConfigBar } from "./styled";
+import {
+  useStyles,
+  Logo,
+  NavBar,
+  Button,
+  ToolConfigBar,
+  UserOptions,
+  UserName,
+} from "./styled";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { goToFeed } from "../../Router/Coordinator";
@@ -14,6 +22,7 @@ const Header = (props) => {
   const history = useHistory();
   const classes = useStyles();
   const token = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
 
   const logOut = () => {
     localStorage.removeItem("token");
@@ -53,9 +62,12 @@ const Header = (props) => {
                   inputProps={{ "aria-label": "search" }}
                 />
               </div>
-              <Button color="inherit" onClick={logOut}>
-                Log Out
-              </Button>
+              <UserOptions>
+                <UserName>u/{username}</UserName>
+                <Button color="inherit" onClick={logOut}>
+                  Log Out
+                </Button>
+              </UserOptions>
             </ToolConfigBar>
           </NavBar>
         )}

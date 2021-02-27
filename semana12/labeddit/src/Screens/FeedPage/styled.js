@@ -18,6 +18,12 @@ export const NewPostContainer = styled.form`
   background-color: white;
   border-radius: 3px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  @media screen and (min-device-width: 320px) and (max-device-width: 420px) {
+    margin-top: 50px;
+  }
+  @media screen and (min-device-width: 421px) and (max-device-width: 800px) {
+    margin-top: 50px;
+  }
 `;
 
 export const SpacingBox = styled.div`
@@ -27,6 +33,12 @@ export const SpacingBox = styled.div`
 `;
 
 export const H3 = styled.h3`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const UserName = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

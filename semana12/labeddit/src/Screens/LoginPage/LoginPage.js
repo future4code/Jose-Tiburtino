@@ -16,8 +16,10 @@ import { logIn } from "../../Services/User";
 import { goToSignUp } from "../../Router/Coordinator";
 import { useHistory } from "react-router-dom";
 import { CircularProgress } from "@material-ui/core";
+import { useUnprotectedPage } from "../../Hooks/useUnprotectedPage";
 
 const LoginPage = () => {
+  useUnprotectedPage();
   const { form, changeState, clearInput } = useForm({
     email: "",
     password: "",

@@ -10,6 +10,7 @@ import {
   NewPostContainer,
   H3,
   SpacingBox,
+  UserName,
 } from "./styled";
 import {
   Button,
@@ -28,10 +29,12 @@ const FeedPage = () => {
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [searchContent, setSearchContent] = useState("");
   const { form, changeState, clearInput } = useForm({ text: "", title: "" });
+  const username = localStorage.getItem("username");
 
   useEffect(() => {
     setInterval(updatePage, 200000);
     getPosts();
+    goTop();
   }, []);
 
   const getPosts = () => {
@@ -42,7 +45,6 @@ const FeedPage = () => {
         },
       })
       .then((response) => {
-        console.log(response);
         setPosts(response.data.posts);
       })
       .catch((error) => {});
@@ -122,6 +124,7 @@ const FeedPage = () => {
       <FeedPageContainer>
         <NewPostContainer onSubmit={createPost}>
           <H3>CRIE SEU POST</H3>
+          <UserName>u/{username}</UserName>
           <SpacingBox>
             <TextField
               name="title"
