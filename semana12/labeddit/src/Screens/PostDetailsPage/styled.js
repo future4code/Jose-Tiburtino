@@ -26,4 +26,10 @@ export const PostComment = styled.form`
   background-color: white;
   border-radius: 3px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  @media screen and (min-device-width: 320px) and (max-device-width: 420px) {
+    width: 100vw;
+  }
+  @media screen and (min-device-width: 421px) and (max-device-width: 800px) {
+    width: 100vw;
+  }
 `;

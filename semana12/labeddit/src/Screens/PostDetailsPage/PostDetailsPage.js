@@ -70,9 +70,7 @@ const PostDetailsPage = () => {
       .then((response) => {
         setPostDetails(response.data.post);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   const voteSearchFilter = (event) => {
@@ -93,10 +91,8 @@ const PostDetailsPage = () => {
       <Header />
       <PostDetailsPageContainer>
         <PostCard
-          key={postDetails.id}
           username={postDetails.username}
           text={postDetails.text}
-          title={postDetails.title}
           votesCount={postDetails.votesCount}
           commentsCount={postDetails.commentsCount}
           createdAt={postDetails.createdAt}
@@ -125,16 +121,12 @@ const PostDetailsPage = () => {
         <CommentsSection>
           {postDetails.length === 0 ? (
             <Loading>
-              <Typography variant="h5" color="primary">
-                Carregando...
-              </Typography>
               <CircularProgress />
             </Loading>
           ) : searchContent === "" ? (
             postDetails.comments
               .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
               .map((post) => {
-                console.log(post);
                 return (
                   <CommentCard
                     username={post.username}
@@ -142,7 +134,6 @@ const PostDetailsPage = () => {
                     votesCount={post.votesCount}
                     createdAt={post.createdAt}
                     id={post.id}
-                    commentId={post.id}
                     postId={params.id}
                     direction={post.userVoteDirection}
                     getPostDetails={getPostDetails}

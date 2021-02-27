@@ -10,16 +10,27 @@ export const HeaderContainer = styled.div`
   align-items: center;
   height: 5vh;
   border-bottom: 1px solid #edeff1;
+  @media screen and (min-device-width: 320px) and (max-device-width: 420px) {
+    height: 30vh;
+  }
+  @media screen and (min-device-width: 421px) and (max-device-width: 800px) {
+    height: 20vh;
+  }
 `;
 
 export const Logo = styled.img`
   cursor: pointer;
   @media screen and (min-device-width: 320px) and (max-device-width: 420px) {
-    height: 6vh;
+    height: 8vh;
   }
   @media screen and (min-device-width: 421px) and (max-device-width: 800px) {
-    height: 6vh;
+    height: 8vh;
   }
+`;
+
+export const Avatar = styled.img`
+  cursor: pointer;
+  padding-top: 5px;
 `;
 
 export const Button = styled.button`

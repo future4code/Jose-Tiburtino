@@ -11,7 +11,10 @@ import {
   ToolConfigBar,
   UserOptions,
   UserName,
+  Avatar,
+  AvatarIcon,
 } from "./styled";
+import logoAvatar from "../../Assets/avatarIcon.png";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { goToFeed } from "../../Router/Coordinator";
@@ -63,6 +66,7 @@ const Header = (props) => {
                 />
               </div>
               <UserOptions>
+                <Avatar src={logoAvatar} onClick={() => goToFeed(history)} />
                 <UserName>u/{username}</UserName>
                 <Button color="inherit" onClick={logOut}>
                   Log Out

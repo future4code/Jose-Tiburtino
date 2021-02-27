@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import { Fab } from "@material-ui/core";
 
+export const FeedPageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 2vh;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #dbe0e6;
+`;
+
 export const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -19,10 +28,11 @@ export const NewPostContainer = styled.form`
   border-radius: 3px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   @media screen and (min-device-width: 320px) and (max-device-width: 420px) {
-    margin-top: 50px;
+    margin-top: 20px;
+    width: 100vw;
   }
   @media screen and (min-device-width: 421px) and (max-device-width: 800px) {
-    margin-top: 50px;
+    margin-top: 20px;
   }
 `;
 
@@ -44,14 +54,6 @@ export const UserName = styled.div`
   align-items: center;
 `;
 
-export const FeedPageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-top: 2vh;
-  height: 100%;
-  min-height: 100vh;
-  background-color: #dbe0e6;
-`;
 export const BackToTop = styled(Fab)`
   display: none;
   position: fixed;
