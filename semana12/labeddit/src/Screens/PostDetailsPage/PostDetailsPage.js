@@ -1,0 +1,170 @@
+import {
+  Button,
+  CircularProgress,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Header from "../../Components/Header/Header";
+import Loading from "../../Components/Loading/Loading";
+import { BASE_URL } from "../../Constant/Constant";
+import useForm from "../../Hooks/useForm";
+import { useProtectedPage } from "../../Hooks/useProtectedPage";
+import CommentCard from "../../Components/CommentCard/CommentCard";
+import {
+  PostDetailsPageContainer,
+  PostComment,
+  CommentsSection,
+} from "./styled";
+import PostCard from "../../Components/PostCard/PostCard";
+import swal from "sweetalert";
+
+const PostDetailsPage = () => {
+  useProtectedPage();
+  const params = useParams();
+  const [postDetails, setPostDetails] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [searchContent, setSearchContent] = useState("");
+  const { form, changeState, clearInput } = useForm({ text: "", title: "" });
+
+  useEffect(() => {
+    getPostDetails();
+  }, []);
+
+  const createComment = (event) => {
+    event.preventDefault();
+    const body = {
+      text: form.text,
+    };
+    axios
+      .post(`${BASE_URL}/posts/${postDetails.id}/comment`, body, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        swal({
+          title: "Comentário feito.",
+          icon: "success",
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        getPostDetails();
+        clearInput();
+      })
+      .catch((error) => {
+        alert("Erro ao criar post!");
+      });
+  };
+
+  const getPostDetails = () => {
+    axios
+      .get(`${BASE_URL}/posts/${params.id}`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        setPostDetails(response.data.post);
+      })
+      .catch((error) => {});
+  };
+
+  const voteSearchFilter = (event) => {
+    const searchArray = postDetails.comments.filter((post) => {
+      const text = post.text.toLowerCase();
+      const username = post.username.toLowerCase();
+      return (
+        text.includes(event.target.value.toLowerCase()) ||
+        username.includes(event.target.value.toLowerCase())
+      );
+    });
+    setFilteredPosts(searchArray);
+    setSearchContent(event.target.value);
+  };
+
+  return (
+    <div>
+      <Header />
+      <PostDetailsPageContainer>
+        <PostCard
+          username={postDetails.username}
+          text={postDetails.text}
+          votesCount={postDetails.votesCount}
+          commentsCount={postDetails.commentsCount}
+          createdAt={postDetails.createdAt}
+          id={postDetails.id}
+          title={postDetails.title}
+          direction={postDetails.userVoteDirection}
+          getPostsDetails={getPostDetails}
+        />
+        <PostComment onSubmit={createComment}>
+          <TextField
+            name="text"
+            value={form.text}
+            label="Comentário"
+            variant="outlined"
+            color="primary"
+            multiline
+            required
+            onChange={changeState}
+            placeholder="Escreva seu comentário."
+          />
+          <Button type="submit" variant="contained" color="primary">
+            {" "}
+            Enviar comentário
+          </Button>
+        </PostComment>
+        <CommentsSection>
+          {postDetails.length === 0 ? (
+            <Loading>
+              <CircularProgress />
+            </Loading>
+          ) : searchContent === "" ? (
+            postDetails.comments
+              .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
+              .map((post) => {
+                return (
+                  <CommentCard
+                    username={post.username}
+                    text={post.text}
+                    votesCount={post.votesCount}
+                    createdAt={post.createdAt}
+                    id={post.id}
+                    postId={params.id}
+                    direction={post.userVoteDirection}
+                    getPostDetails={getPostDetails}
+                  />
+                );
+              })
+          ) : (
+            <div>
+              {filteredPosts
+                .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
+                .map((post) => {
+                  return (
+                    <CommentCard
+                      username={post.username}
+                      text={post.text}
+                      votesCount={post.votesCount}
+                      createdAt={post.createdAt}
+                      id={post.id}
+                      postId={params.id}
+                      direction={post.userVoteDirection}
+                      getPostDetails={getPostDetails}
+                      voteOnSearch={voteSearchFilter}
+                    />
+                  );
+                })}
+            </div>
+          )}
+        </CommentsSection>
+      </PostDetailsPageContainer>
+    </div>
+  );
+};
+
+export default PostDetailsPage;
