@@ -1,0 +1,23 @@
+{
+  "name": "aula41-type",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "clear && tsc",
+    "ex1": "tsc && node ./build/exercicio1.js",
+    "ex2": "tsc && node ./build/exercicio2.js",
+    "ex3": "tsc && node ./build/exercicio3.js",
+    "ex4": "tsc && node ./build/exercicio4.js",
+    "ex5": "tsc && node ./build/exercicio5.js",
+    "ex6": "tsc && node ./build/exercicio6.js",
+    "ex7": "tsc && node ./build/exercicio7.js",
+    "ex10": "tsc && node ./build/exercicio10.js"
+  },
+  "keywords": [],
+  "author": "José Victor",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.2.3"
+  }
+}
