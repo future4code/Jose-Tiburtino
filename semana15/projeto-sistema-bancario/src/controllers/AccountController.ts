@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { User, users } from "../data/users";
-import { verifyAge } from "../utilities/verifiers";
+import { verifyAge, verifyCpf } from "../utilities/verifiers";
 
 class AccountController {
   async create(req: Request, res: Response) {
@@ -15,6 +15,12 @@ class AccountController {
       if (!accountAuth) {
         errorCode = 401;
         throw new Error("Somente maiores de 18 anos podem abrir uma conta!");
+      }
+
+      const cpfAlreadyExists: User | undefined = verifyCpf(req.body.cpf);
+      if (cpfAlreadyExists) {
+        errorCode = 409;
+        throw new Error("CPF já existente em nosso banco de dados.");
       }
 
       const newUser: User = {
