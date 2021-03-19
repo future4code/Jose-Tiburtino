@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { User, Extract } from "../data/users";
-import { now, verifyCpf } from "../utilities/verifiers";
+import { now, today, verifyCpf } from "../utilities/verifiers";
 
 class BalanceController {
   async execute(req: Request, res: Response) {
@@ -14,7 +14,7 @@ class BalanceController {
       }
       const todayPayments: Extract[] | undefined = account.information.filter(
         (Extract: any) => {
-          return Extract.date <= now;
+          return Extract.date <= today;
         }
       );
       let newBalance: number = account.balance;

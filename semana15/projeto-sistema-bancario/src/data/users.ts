@@ -17,7 +17,7 @@ export const users: User[] = [
     name: "José Victor",
     cpf: 12395617814,
     birthDate: "24/02/1999",
-    balance: 3000,
+    balance: 500,
     information: [
       {
         value: 200,

@@ -1,6 +1,8 @@
+import dayjs from "dayjs";
 import { User, users } from "../data/users";
 
 export const now: number = new Date().getTime();
+export const today = dayjs().format("DD/MM/YYYY");
 
 export const updateTime = (date: string): number => {
   const [day, month, year] = date.split("/");
