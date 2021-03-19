@@ -21,7 +21,7 @@ export const users: User[] = [
     information: [
       {
         value: 200,
-        date: "19/03/2021",
+        date: "16/03/2021",
         description: "Depósito de dinheiro",
       },
     ],

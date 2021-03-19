@@ -16,7 +16,8 @@ const paymentController = new PaymentController();
 router.post("/account/create", accountController.create);
 router.get("/account/all", usersController.show);
 router.get("/account/search", balanceController.show);
-router.post("/account/deposit", transactionController.execute);
+router.put("/account/search/:cpf", balanceController.execute);
+router.put("/account/deposit", transactionController.execute);
 router.post("/account/pay", paymentController.execute);
 
 export { router };

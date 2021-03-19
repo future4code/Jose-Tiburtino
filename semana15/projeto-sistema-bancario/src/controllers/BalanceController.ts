@@ -1,8 +1,33 @@
 import { Request, Response } from "express";
-import { User } from "../data/users";
-import { verifyCpf } from "../utilities/verifiers";
+import { User, Extract } from "../data/users";
+import { now, verifyCpf } from "../utilities/verifiers";
 
 class BalanceController {
+  async execute(req: Request, res: Response) {
+    let errorCode: number = 400;
+    try {
+      const cpfNumber: number = Number(req.params.cpf);
+      const account: User | undefined = verifyCpf(cpfNumber);
+      if (!account) {
+        errorCode = 404;
+        throw new Error("Conta não foi encontrada!");
+      }
+      const todayPayments: Extract[] | undefined = account.information.filter(
+        (Extract: any) => {
+          return Extract.date <= now;
+        }
+      );
+      let newBalance: number = account.balance;
+      for (let Extract of todayPayments) {
+        newBalance = account.balance + Extract.value;
+      }
+      account.balance = newBalance;
+      res.status(200).send("Saldo da conta bancária atualizado!");
+    } catch (error) {
+      res.status(errorCode).send(error.message);
+    }
+  }
+
   async show(req: Request, res: Response) {
     let errorCode: number = 400;
     try {
