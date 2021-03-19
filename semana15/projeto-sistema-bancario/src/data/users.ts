@@ -8,7 +8,7 @@ export type User = {
 
 export type Extract = {
   value: number;
-  date: number;
+  date: string;
   description: string;
 };
 
@@ -21,8 +21,8 @@ export const users: User[] = [
     information: [
       {
         value: 200,
-        date: 19032021,
-        description: "não sei",
+        date: "19/03/2021",
+        description: "Depósito de dinheiro",
       },
     ],
   },

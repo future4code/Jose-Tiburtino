@@ -10,7 +10,8 @@ const usersController = new UsersController();
 const balanceController = new BalanceController();
 
 router.post("/create", accountController.create);
-router.get("/users/all", usersController.show);
-router.get("/users/search", balanceController.show);
+router.get("/account/all", usersController.show);
+router.get("/account/search", balanceController.show);
+router.put("/account/deposit", balanceController.execute);
 
 export { router };
