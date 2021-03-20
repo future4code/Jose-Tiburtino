@@ -18,7 +18,7 @@ const internTransferController = new InternTransferController();
 router.post("/account/create", accountController.create);
 router.get("/account/all", usersController.show);
 router.get("/account/search", balanceController.show);
-router.put("/account/search/:cpf", balanceController.execute);
+router.put("/account/update/:cpf", balanceController.execute);
 router.put("/account/deposit", transactionController.execute);
 router.post("/account/pay", paymentController.execute);
 router.post("/account/transfer", internTransferController.execute);

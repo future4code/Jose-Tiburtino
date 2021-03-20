@@ -19,7 +19,7 @@ class BalanceController {
       );
       let newBalance: number = account.balance;
       for (let Extract of todayPayments) {
-        newBalance = account.balance + Extract.value;
+        newBalance = account.balance - Extract.value;
       }
       account.balance = newBalance;
       res.status(200).send("Saldo da conta bancária atualizado!");
