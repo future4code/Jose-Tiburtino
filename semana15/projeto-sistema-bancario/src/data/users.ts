@@ -26,4 +26,17 @@ export const users: User[] = [
       },
     ],
   },
+  {
+    name: "Luanzito",
+    cpf: 45712359272,
+    birthDate: "25/05/1998",
+    balance: 300,
+    information: [
+      {
+        value: 150,
+        date: "13/03/2021",
+        description: "Depósito de dinheiro",
+      },
+    ],
+  },
 ];

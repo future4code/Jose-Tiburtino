@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { User, Extract } from "../data/users";
-import { now, today, verifyCpf } from "../utilities/verifiers";
+import { today, verifyCpf } from "../utilities/verifiers";
 
 class BalanceController {
   async execute(req: Request, res: Response) {
