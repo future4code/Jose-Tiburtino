@@ -1,0 +1,444 @@
+{
+	"info": {
+		"_postman_id": "7dde8880-73e0-4abe-8d30-0199e36a07c6",
+		"name": "LabeBank - José Victor Epps",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UpdateBalance",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{Server 1}}/search/12395617814",
+					"host": [
+						"{{Server 1}}"
+					],
+					"path": [
+						"search",
+						"12395617814"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_200",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Server 1}}/search/12395617814",
+							"host": [
+								"{{Server 1}}"
+							],
+							"path": [
+								"search",
+								"12395617814"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "PaymentAccount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cpf\": 12395617814,\r\n  \"value\": 200\r\n}"
+				},
+				"url": {
+					"raw": "{{Server 1}}/pay",
+					"host": [
+						"{{Server 1}}"
+					],
+					"path": [
+						"pay"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": 12395617814,\r\n  \"value\": 200\r\n}"
+						},
+						"url": {
+							"raw": "{{Server 1}}/pay",
+							"host": [
+								"{{Server 1}}"
+							],
+							"path": [
+								"pay"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "GetAccounts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "{{Server 1}}/all",
+					"host": [
+						"{{Server 1}}"
+					],
+					"path": [
+						"all"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{Server 1}}/all",
+							"host": [
+								"{{Server 1}}"
+							],
+							"path": [
+								"all"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "InternTransfer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"senderCpf\": 12395617814,\r\n  \"senderName\": \"José Victor\",\r\n  \"receiverCpf\": 45712359272,\r\n  \"receiverName\": \"Luanzito\",\r\n  \"value\": 40\r\n}"
+				},
+				"url": {
+					"raw": "{{Server 1}}/transfer",
+					"host": [
+						"{{Server 1}}"
+					],
+					"path": [
+						"transfer"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"senderCpf\": 12395617814,\r\n  \"senderName\": \"José Victor\",\r\n  \"receiverCpf\": 45712359272,\r\n  \"receiverName\": \"Luanzito\",\r\n  \"value\": 40\r\n}"
+						},
+						"url": {
+							"raw": "{{Server 1}}/transfer",
+							"host": [
+								"{{Server 1}}"
+							],
+							"path": [
+								"transfer"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "PutBalance",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"José Victor\",\r\n  \"cpf\": 12395617814,\r\n  \"value\": 2000\r\n}"
+				},
+				"url": {
+					"raw": "{{Server 1}}/deposit",
+					"host": [
+						"{{Server 1}}"
+					],
+					"path": [
+						"deposit"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_200",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"José Victor\",\r\n  \"cpf\": 12395617814,\r\n  \"value\": 2000\r\n}"
+						},
+						"url": {
+							"raw": "{{Server 1}}/deposit",
+							"host": [
+								"{{Server 1}}"
+							],
+							"path": [
+								"deposit"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "TakeBalance",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "{{Server 1}}/search",
+					"host": [
+						"{{Server 1}}"
+					],
+					"path": [
+						"search"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{Server 1}}/search",
+							"host": [
+								"{{Server 1}}"
+							],
+							"path": [
+								"search"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "CreateAccount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Pinoquio\",\r\n  \"cpf\": 40540591841,\r\n  \"birthDate\": \"30/05/1997\"\r\n}"
+				},
+				"url": {
+					"raw": "{{Server 1}}/create",
+					"host": [
+						"{{Server 1}}"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Pinoquio\",\r\n  \"cpf\": 40540591841,\r\n  \"birthDate\": \"30/05/1997\"\r\n}"
+						},
+						"url": {
+							"raw": "{{Server 1}}/create",
+							"host": [
+								"{{Server 1}}"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "Server 1",
+			"value": "DefaultParameterValue/account"
+		},
+		{
+			"key": "Server 11",
+			"value": "DefaultParameterValue/account"
+		}
+	]
+}
