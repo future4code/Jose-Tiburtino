@@ -1,13 +1,13 @@
-import dayjs from "dayjs";
 import { Request, Response } from "express";
 import { createTask } from "../data/createTask";
+import { checkDate, formatDate } from "../utilities/verifiers";
 
 class CreateTaskController {
   async create(req: Request, res: Response) {
     let errorCode: number = 400;
     try {
       const { title, description, limitDate, userId } = req.body;
-      const checkDate = dayjs(limitDate).format("YYYY-MM-DD");
+      const checkingDate = checkDate(limitDate);
       if (!title) {
         errorCode = 422;
         throw new Error("Por favor coloque um título.");
@@ -24,11 +24,12 @@ class CreateTaskController {
         errorCode = 422;
         throw new Error("Por favor informe o ID do usuário.");
       }
-      if (!checkDate) {
+      if (!checkingDate) {
         errorCode = 406;
-        throw new Error("Coloque uma data formato YYYY/MM/DD.");
+        throw new Error("Coloque uma data formato DD/MM/YYYY.");
       }
-      await createTask(title, description, checkDate, userId);
+      const formatingDate = formatDate(limitDate);
+      await createTask(title, description, formatingDate, userId);
       res.status(201).send({ message: `Tarefa ${title} criada com sucesso!` });
     } catch (error) {
       res.status(errorCode).send({ message: error.message });

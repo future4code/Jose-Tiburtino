@@ -1,4 +1,4 @@
-import connection from "../connection";
+import connection from "../utilities/connection";
 
 export const getUserById = async (id: string): Promise<any> => {
   try {
