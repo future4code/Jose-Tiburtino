@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { Request, Response } from "express";
 import { getTaskById } from "../data/getTaskById";
 
@@ -7,20 +6,11 @@ class GetTaskByIdController {
     let errorCode: number = 400;
     try {
       const id = req.params.id;
-      const partResult = await getTaskById(id);
-      if (!partResult) {
+      const result = await getTaskById(id);
+      if (!result) {
         errorCode = 404;
         throw new Error("Id da tarefa não foi encontrado.");
       } else {
-        const result = {
-          taskId: partResult.id,
-          title: partResult.title,
-          description: partResult.description,
-          limitDate: dayjs(partResult.limit_date).format("DD/MM/YYYY"),
-          status: partResult.status,
-          userId: partResult.user_id,
-          userNickname: partResult.nickname,
-        };
         res.status(200).send(result);
       }
     } catch (error) {
