@@ -9,7 +9,7 @@ class GetUserByIdController {
       const result = await getUserById(id);
       if (!result) {
         errorCode = 404;
-        throw new Error("Tente novamente, usuário não foi encontrado!");
+        throw new Error("Tente novamente, id do usuário não foi encontrado!");
       }
       res.status(200).send(result);
     } catch (error) {

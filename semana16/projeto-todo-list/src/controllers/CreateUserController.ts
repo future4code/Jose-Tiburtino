@@ -8,10 +8,12 @@ class CreateUserController {
       const { name, nickname, email } = req.body;
       if (!name || !nickname || !email) {
         errorCode = 422;
-        throw new Error("Preencha as informações corretamente!");
+        throw new Error(
+          "Preencha as informações corretamente para a criação de usuário!"
+        );
       }
       await createUser(name, nickname, email);
-      res.status(201).send("Usuário criado com sucesso!");
+      res.status(201).send({ message: "Usuário criado com sucesso!" });
     } catch (error) {
       res.status(errorCode).send({ message: error.message });
     }
