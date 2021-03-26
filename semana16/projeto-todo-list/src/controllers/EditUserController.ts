@@ -16,7 +16,7 @@ class EditUserController {
         throw new Error("Preencha o campo nickname para a alteração!");
       }
       await editUser(id, name, nickname);
-      res.status(201).send({ message: "Usuário editado com sucesso!" });
+      res.status(201).send({ message: `Usuário ${name} editado com sucesso!` });
     } catch (error) {
       res.status(errorCode).send({ message: error.message });
     }

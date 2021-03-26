@@ -13,7 +13,7 @@ class CreateUserController {
         );
       }
       await createUser(name, nickname, email);
-      res.status(201).send({ message: "Usuário criado com sucesso!" });
+      res.status(201).send({ message: `Usuário ${name} criado com sucesso!` });
     } catch (error) {
       res.status(errorCode).send({ message: error.message });
     }
