@@ -1,5 +1,6 @@
 import express from "express";
 import { AddressInfo } from "net";
+import { sendMailEnd } from "./endpoints/sendMailEnd";
 import { createUser } from "./endpoints/createUser";
 import { deleteUser } from "./endpoints/deleteUser";
 import { getUserById } from "./endpoints/getUserById";
@@ -12,6 +13,7 @@ app.post("/user/signup", createUser);
 app.post("/user/login", userLogin);
 app.get("/user/profile", getUserById);
 app.delete("/user/:id", deleteUser);
+app.post("/user/mail/send", sendMailEnd);
 
 const server = app.listen(process.env.PORT || 3333, () => {
   if (server) {

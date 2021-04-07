@@ -1,0 +1,25 @@
+<style>
+    .container {
+        width: 800px;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+
+<div class="container">
+    <label>Olá <strong>Pessoa</strong>! Tudo bem?</label>
+
+    <h3>Objeto utilizado para enviar o email.</h3>
+    <br />
+    <p>
+        from: `José ${process.env.NODEMAILER_USER}`, to: email, subject: "Objeto" , html: mailHtml, </p>
+
+    <br />
+    <br />
+
+    <strong>Obrigado.</strong>
+    <h3>Att. | <strong>José Victor</strong></h3>
+</div>
