@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { insertUser } from "../models/insertUser";
 import { selectUserByEmail } from "../models/selectUserLogin";
-import { selectUserById } from "../models/selectUserProfile";
+import { selectUserById } from "../models/selectUserById";
 import { generateToken, getTokenData } from "../services/authenticator";
 import { generateId } from "../services/generateId";
 import { generateHash, compareHash } from "../services/hashManager";
@@ -86,12 +86,6 @@ class UserController {
     try {
       const token: string = req.headers.authorization as string;
       const authenticationData: AuthenticationData = getTokenData(token);
-      if (authenticationData.role !== "Normal") {
-        errorCode = 401;
-        throw new Error(
-          "Somente um usuário Normal pode acessar esta funcionalidade!"
-        );
-      }
       if (!token || !authenticationData) {
         errorCode = 406;
         throw new Error("Token inválido!");
@@ -106,7 +100,7 @@ class UserController {
         name: user.name,
         email: user.email,
       };
-      res.status(200).send({ Usuário: result });
+      res.status(200).send({ User: result });
     } catch (error) {
       res.status(errorCode).send({ message: error.message });
     }
