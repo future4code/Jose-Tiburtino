@@ -15,3 +15,11 @@ export type AuthenticationData = {
   id: string;
   role: Role;
 };
+
+export type NewRecipe = {
+  id: string;
+  title: string;
+  description: string;
+  created_at: string;
+  userCreator_id: Role;
+};

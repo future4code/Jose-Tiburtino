@@ -90,15 +90,15 @@ class UserController {
         errorCode = 406;
         throw new Error("Token inválido!");
       }
-      const user = await selectUserById(authenticationData.id);
-      if (!user) {
+      const result = await selectUserById(authenticationData.id);
+      if (!result) {
         errorCode = 404;
         throw new Error("Usuário não existe.");
       }
-      const result = {
-        id: user.id,
-        name: user.name,
-        email: user.email,
+      const user = {
+        id: result.id,
+        name: result.name,
+        email: result.email,
       };
       res.status(200).send({ User: result });
     } catch (error) {
