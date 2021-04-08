@@ -16,5 +16,6 @@ router.get("/cookenu/user/profile", userController.show);
 router.get("/cookenu/user/:id", usersProfilesController.show);
 
 router.post("/cookenu/recipe", recipeController.create);
+router.get("/cookenu/recipe/:id", recipeController.show);
 
 export { router };
