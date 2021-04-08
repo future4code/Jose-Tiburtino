@@ -7,6 +7,6 @@ export const generateHash = async (s: string): Promise<string> => {
   return result;
 };
 
-export const compare = (s: string, hash: string): Promise<boolean> => {
+export const compareHash = (s: string, hash: string): Promise<boolean> => {
   return bcrypt.compare(s, hash);
 };
