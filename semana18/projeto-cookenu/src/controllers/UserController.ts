@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import { insertUser } from "../models/insertUser";
-import { selectUserByEmail } from "../models/selectUserByEmail";
-import { generateToken } from "../services/authenticator";
+import { selectUserByEmail } from "../models/selectUserLogin";
+import { selectUserById } from "../models/selectUserProfile";
+import { generateToken, getTokenData } from "../services/authenticator";
 import { generateId } from "../services/generateId";
 import { generateHash, compareHash } from "../services/hashManager";
 import { validateEmail } from "../services/validateEmail";
-import { NewUser } from "../types";
+import { AuthenticationData, NewUser } from "../types";
 
 class UserController {
   async create(req: Request, res: Response) {
@@ -75,6 +76,37 @@ class UserController {
       };
       const token = generateToken(result);
       res.status(200).send({ acess_token: token });
+    } catch (error) {
+      res.status(errorCode).send({ message: error.message });
+    }
+  }
+
+  async show(req: Request, res: Response) {
+    let errorCode: number = 400;
+    try {
+      const token: string = req.headers.authorization as string;
+      const authenticationData: AuthenticationData = getTokenData(token);
+      if (authenticationData.role !== "Normal") {
+        errorCode = 401;
+        throw new Error(
+          "Somente um usuário Normal pode acessar esta funcionalidade!"
+        );
+      }
+      if (!token || !authenticationData) {
+        errorCode = 406;
+        throw new Error("Token inválido!");
+      }
+      const user = await selectUserById(authenticationData.id);
+      if (!user) {
+        errorCode = 404;
+        throw new Error("Usuário não existe.");
+      }
+      const result = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      };
+      res.status(200).send({ Usuário: result });
     } catch (error) {
       res.status(errorCode).send({ message: error.message });
     }
