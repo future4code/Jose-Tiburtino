@@ -24,7 +24,7 @@ router.get("/cookenu/user/:id", usersProfilesController.show);
 router.post("/cookenu/recipe", recipeController.create);
 router.get("/cookenu/recipe/:id", recipeController.show);
 router.get("/cookenu/user/recipe/feed", recipesInfoController.show);
-
+router.put("/cookenu/recipe/edit", recipesInfoController.execute);
 
 router.post("/cookenu/user/follow", followController.execute);
 router.post("/cookenu/user/unfollow", unfollowController.execute);
