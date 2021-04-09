@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { insertUser } from "../models/insertUser";
-import { selectUserByEmail } from "../models/selectUserLogin";
+import { selectUserByEmail } from "../models/selectUserByEmail";
 import { selectUserById } from "../models/selectUserById";
 import { generateToken, getTokenData } from "../services/authenticator";
 import { generateId } from "../services/generateId";

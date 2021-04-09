@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { AccountMailController } from "./controllers/AccountMailController";
 import { FollowController } from "./controllers/FollowController";
 import { RecipeController } from "./controllers/RecipeController";
 import { RecipesInfoController } from "./controllers/RecipesInfoController";
@@ -14,11 +15,14 @@ const recipeController = new RecipeController();
 const followController = new FollowController();
 const unfollowController = new UnfollowController();
 const recipesInfoController = new RecipesInfoController();
+const accountMailController = new AccountMailController();
 
 router.post("/cookenu/signup", userController.create);
 router.post("/cookenu/login", userController.execute);
 router.get("/cookenu/user/profile", userController.show);
 router.delete("/cookenu/user/delete/:id", userController.delete);
+
+router.post("/cookenu/mail/password", accountMailController.execute);
 
 router.get("/cookenu/user/:id", usersProfilesController.show);
 
