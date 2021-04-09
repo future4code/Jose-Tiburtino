@@ -7,6 +7,7 @@ import { generateId } from "../services/generateId";
 import { generateHash, compareHash } from "../services/hashManager";
 import { validateEmail } from "../services/validateEmail";
 import { AuthenticationData, User } from "../types";
+import { removeUser } from "../models/removeUser";
 
 class UserController {
   async create(req: Request, res: Response) {
@@ -100,7 +101,31 @@ class UserController {
         name: result.name,
         email: result.email,
       };
-      res.status(200).send({ User: result });
+      res.status(200).send({ User: user });
+    } catch (error) {
+      res.status(errorCode).send({ message: error.message });
+    }
+  }
+
+  async delete(req: Request, res: Response) {
+    let errorCode: number = 400;
+    try {
+      const { id } = req.params;
+      const token = req.headers.authorization as string;
+      const authenticationData: AuthenticationData = getTokenData(token);
+      if (authenticationData.role !== "Admin") {
+        errorCode = 401;
+        throw new Error(
+          "Somente um Administrador pode realizar esta funcionalidade!"
+        );
+      }
+      const user = await selectUserById(id);
+      if (!user) {
+        errorCode = 404;
+        throw new Error("Usuário não existe.");
+      }
+      await removeUser(id);
+      res.status(200).send({ message: "Usuário deletado." });
     } catch (error) {
       res.status(errorCode).send({ message: error.message });
     }
