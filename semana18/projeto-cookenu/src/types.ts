@@ -23,3 +23,8 @@ export type NewRecipe = {
   created_at: string;
   userCreator_id: Role;
 };
+
+export type NewFollow = {
+  follower_id: string;
+  following_id: string;
+};
