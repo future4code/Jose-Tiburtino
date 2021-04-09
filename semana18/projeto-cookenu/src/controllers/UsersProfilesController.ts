@@ -23,7 +23,7 @@ class UsersProfilesController {
         throw new Error("Usuário não existe.");
       }
       const user = {
-        user_id: result.id,
+        id: result.id,
         name: result.name,
         email: result.email,
         role: result.role,

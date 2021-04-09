@@ -17,7 +17,7 @@ const createTables = async (): Promise<void> => {
             description TEXT,
             created_at DATE NOT NULL,
             userCreator_id VARCHAR(255) NOT NULL,
-            FOREIGN KEY (userCreator_id) REFERENCES Users_Cookenu(id)
+            FOREIGN KEY (userCreator_id) REFERENCES Users_Cookenu(id),
         );
         
         CREATE TABLE Following (
