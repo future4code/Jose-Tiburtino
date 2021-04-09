@@ -42,7 +42,6 @@ class AccountMailController {
       );
 
       const variables = {
-        email: email,
         password: newPassword,
         name: user.name,
       };
