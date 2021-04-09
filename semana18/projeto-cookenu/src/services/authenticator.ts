@@ -1,8 +1,6 @@
 import * as jwt from "jsonwebtoken";
 import { AuthenticationData } from "../types";
 
-const expiresIn = "1y";
-
 export const generateToken = (input: AuthenticationData): string => {
   const token: string = jwt.sign(
     {
@@ -11,7 +9,7 @@ export const generateToken = (input: AuthenticationData): string => {
     },
     process.env.JWT_KEY as string,
     {
-      expiresIn,
+      expiresIn: process.env.JWT_EXPIRE_TIME,
     }
   );
   return token;
