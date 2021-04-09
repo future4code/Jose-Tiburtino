@@ -1,7 +1,7 @@
 import connection from "../database/connection";
-import { NewRecipe } from "../types";
+import { Recipe } from "../types";
 
-export const insertRecipe = async (newRecipe: NewRecipe): Promise<void> => {
+export const insertRecipe = async (newRecipe: Recipe): Promise<void> => {
   try {
     await connection.insert(newRecipe).into("Recipes_Cookenu");
   } catch (error) {

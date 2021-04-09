@@ -1,4 +1,4 @@
-export type NewUser = {
+export type User = {
   id: string;
   name: string;
   email: string;
@@ -16,7 +16,7 @@ export type AuthenticationData = {
   role: Role;
 };
 
-export type NewRecipe = {
+export type Recipe = {
   id: string;
   title: string;
   description: string;
@@ -24,7 +24,7 @@ export type NewRecipe = {
   userCreator_id: Role;
 };
 
-export type NewFollow = {
+export type Follow = {
   follower_id: string;
   following_id: string;
 };

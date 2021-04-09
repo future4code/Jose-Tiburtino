@@ -6,7 +6,7 @@ import { generateToken, getTokenData } from "../services/authenticator";
 import { generateId } from "../services/generateId";
 import { generateHash, compareHash } from "../services/hashManager";
 import { validateEmail } from "../services/validateEmail";
-import { AuthenticationData, NewUser } from "../types";
+import { AuthenticationData, User } from "../types";
 
 class UserController {
   async create(req: Request, res: Response) {
@@ -28,7 +28,7 @@ class UserController {
       }
       const id = generateId();
       const hashPassword: string = await generateHash(password);
-      const newUser: NewUser = {
+      const newUser: User = {
         id: id,
         name: name,
         email: email,

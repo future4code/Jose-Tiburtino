@@ -5,7 +5,7 @@ import { selectRecipeById } from "../models/selectRecipeById";
 import { selectUserById } from "../models/selectUserById";
 import { getTokenData } from "../services/authenticator";
 import { generateId } from "../services/generateId";
-import { AuthenticationData, NewRecipe } from "../types";
+import { AuthenticationData, Recipe } from "../types";
 
 class RecipeController {
   async create(req: Request, res: Response) {
@@ -28,7 +28,7 @@ class RecipeController {
         errorCode = 422;
         throw new Error("Por favor insira um título.");
       }
-      const newRecipe: NewRecipe = {
+      const newRecipe: Recipe = {
         id: id,
         title: title,
         description: description,

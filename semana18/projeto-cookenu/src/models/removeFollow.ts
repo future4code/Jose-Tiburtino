@@ -1,13 +1,10 @@
 import connection from "../database/connection";
 import { Follow } from "../types";
 
-export const insertFollowUser = async (
-  newFollowing: Follow
-): Promise<void> => {
+export const removeFollow = async (unfollow: Follow): Promise<void> => {
   try {
-    await connection.insert(newFollowing).into("Following");
+    await connection("Following").where(unfollow).delete();
   } catch (error) {
-    console.log(error);
     throw new Error(error.message || error.sqlMessage);
   }
 };
