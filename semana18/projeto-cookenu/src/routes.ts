@@ -15,6 +15,7 @@ const followController = new FollowController();
 const unfollowController = new UnfollowController();
 const recipesInfoController = new RecipesInfoController();
 
+router.delete("/cookenu/recipe/delete/:id", recipesInfoController.delete);
 router.post("/cookenu/signup", userController.create);
 router.post("/cookenu/login", userController.execute);
 router.get("/cookenu/user/profile", userController.show);

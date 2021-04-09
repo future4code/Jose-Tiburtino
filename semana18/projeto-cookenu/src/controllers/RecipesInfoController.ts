@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import { Request, Response } from "express";
+import { removeRecipe } from "../models/removeRecipe";
 import { selectRecipeById } from "../models/selectRecipeById";
 import { selectRecipesFeed } from "../models/selectRecipesFeed";
 import { selectUserById } from "../models/selectUserById";
@@ -45,7 +46,9 @@ class RecipesInfoController {
       const authenticationData: AuthenticationData = getTokenData(token);
       if (authenticationData.role !== "Normal") {
         errorCode = 401;
-        throw new Error("Somente um usuário pode acessar esta funcionalidade!");
+        throw new Error(
+          "Somente um usuário normal pode acessar esta funcionalidade!"
+        );
       }
       const user = await selectUserById(authenticationData.id);
       const recipe = await selectRecipeById(id);
@@ -57,6 +60,30 @@ class RecipesInfoController {
       res.status(200).send({ message: "Receita atualizada." });
     } catch (error) {
       res.status(errorCode).send({ message: error.message });
+    }
+  }
+
+  async delete(req: Request, res: Response) {
+    let errorCode: number = 400;
+    try {
+      const { id } = req.params;
+      const token = req.headers.authorization as string;
+      const authenticationData = getTokenData(token);
+      const user = await selectUserById(authenticationData.id);
+      const recipe = await selectRecipeById(id);
+
+      if (
+        recipe.userCreator_id !== user.id &&
+        authenticationData.role !== "Admin"
+      ) {
+        res.statusCode = 422;
+        throw new Error("Não é permitido apagar a receita de outro usuário");
+      }
+
+      await removeRecipe(id);
+      res.status(200).send({message: "A receita foi apagada com sucesso."});
+    } catch (error) {
+      res.status(errorCode).send({ message: error.mesage });
     }
   }
 }
