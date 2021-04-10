@@ -40,7 +40,11 @@ class UserController {
       const token = generateToken({ id, role });
       res.status(201).send({ message: "Usuário criado com sucesso", token });
     } catch (error) {
-      res.status(errorCode).send({ message: error.message });
+      if (errorCode === 200) {
+        res.status(500).send({ message: "Internal server error" });
+      } else {
+        res.send({ message: error.message });
+      }
     }
   }
 
@@ -78,7 +82,11 @@ class UserController {
       const token = generateToken(result);
       res.status(200).send({ acess_token: token });
     } catch (error) {
-      res.status(errorCode).send({ message: error.message });
+      if (errorCode === 200) {
+        res.status(500).send({ message: "Internal server error" });
+      } else {
+        res.send({ message: error.message });
+      }
     }
   }
 
@@ -103,7 +111,11 @@ class UserController {
       };
       res.status(200).send({ User: user });
     } catch (error) {
-      res.status(errorCode).send({ message: error.message });
+      if (errorCode === 200) {
+        res.status(500).send({ message: "Internal server error" });
+      } else {
+        res.send({ message: error.message });
+      }
     }
   }
 
@@ -127,7 +139,11 @@ class UserController {
       await removeUser(id);
       res.status(200).send({ message: "Usuário deletado." });
     } catch (error) {
-      res.status(errorCode).send({ message: error.message });
+      if (errorCode === 200) {
+        res.status(500).send({ message: "Internal server error" });
+      } else {
+        res.send({ message: error.message });
+      }
     }
   }
 }

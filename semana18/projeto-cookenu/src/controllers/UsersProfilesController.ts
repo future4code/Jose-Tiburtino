@@ -30,7 +30,11 @@ class UsersProfilesController {
       };
       res.status(200).send({ User: user });
     } catch (error) {
-      res.status(errorCode).send({ message: error.message });
+      if (errorCode === 200) {
+        res.status(500).send({ message: "Internal server error" });
+      } else {
+        res.send({ message: error.message });
+      }
     }
   }
 }

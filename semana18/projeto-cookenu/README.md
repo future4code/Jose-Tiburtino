@@ -20,7 +20,7 @@
 
 Teste as rotas com a documentação, basta importar ela para seu postman.
 
-[Postman - Cookenu]()
+[Postman - Cookenu](https://documenter.getpostman.com/view/14145831/TzCV34f2)
 
 ## ✨ Tecnologias
 

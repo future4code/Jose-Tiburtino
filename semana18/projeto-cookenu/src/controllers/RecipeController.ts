@@ -71,7 +71,11 @@ class RecipeController {
       };
       res.status(200).send({ Recipe: recipe });
     } catch (error) {
-      res.status(errorCode).send({ message: error.message });
+      if (errorCode === 200) {
+        res.status(500).send({ message: "Internal server error" });
+      } else {
+        res.send({ message: error.message });
+      }
     }
   }
 }

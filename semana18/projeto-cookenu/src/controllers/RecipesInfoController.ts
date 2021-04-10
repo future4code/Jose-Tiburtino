@@ -34,7 +34,11 @@ class RecipesInfoController {
       });
       res.status(200).send({ recipes: recipes });
     } catch (error) {
-      res.status(errorCode).send({ message: error.message });
+      if (errorCode === 200) {
+        res.status(500).send({ message: "Internal server error" });
+      } else {
+        res.send({ message: error.message });
+      }
     }
   }
 
@@ -59,7 +63,11 @@ class RecipesInfoController {
       await updateRecipe(id, title, description);
       res.status(200).send({ message: "Receita atualizada." });
     } catch (error) {
-      res.status(errorCode).send({ message: error.message });
+      if (errorCode === 200) {
+        res.status(500).send({ message: "Internal server error" });
+      } else {
+        res.send({ message: error.message });
+      }
     }
   }
 
@@ -76,14 +84,18 @@ class RecipesInfoController {
         recipe.userCreator_id !== user.id &&
         authenticationData.role !== "Admin"
       ) {
-        res.statusCode = 422;
+        errorCode = 422;
         throw new Error("Não é permitido apagar a receita de outro usuário");
       }
 
       await removeRecipe(id);
-      res.status(200).send({message: "A receita foi apagada com sucesso."});
+      res.status(200).send({ message: "A receita foi apagada com sucesso." });
     } catch (error) {
-      res.status(errorCode).send({ message: error.mesage });
+      if (errorCode === 200) {
+        res.status(500).send({ message: "Internal server error" });
+      } else {
+        res.send({ message: error.message });
+      }
     }
   }
 }
