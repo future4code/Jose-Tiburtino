@@ -1,0 +1,3 @@
+class PostBusiness {}
+
+export { PostBusiness };
