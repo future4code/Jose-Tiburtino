@@ -6,7 +6,6 @@ class UserDatabase extends Connection {
   private dataToModel(data?: any): User {
     return data && new User(data.id, data.name, data.email, data.password);
   }
-
   public insertUser = async (user: User): Promise<void> => {
     try {
       await Connection.connection

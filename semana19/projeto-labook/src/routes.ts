@@ -7,7 +7,10 @@ const router = Router();
 const userController = new UserController();
 const postController = new PostController();
 
-router.post("/signup", userController.signup);
-router.post("/login", userController.login);
+router.post("/user/signup", userController.signup);
+router.post("/user/login", userController.login);
+
+router.post("/post/create", postController.createPost);
+router.get("/post/:id", postController.getPostById);
 
 export { router };
