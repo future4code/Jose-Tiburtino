@@ -7,4 +7,6 @@ const router = Router();
 const userController = new UserController();
 const postController = new PostController();
 
+router.post("/signup", userController.signup);
+
 export { router };

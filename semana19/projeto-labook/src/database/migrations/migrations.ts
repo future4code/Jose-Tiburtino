@@ -1,5 +1,4 @@
 import { Connection } from "../connection";
-
 class Migrations extends Connection {
   public createTables = async (): Promise<void> => {
     try {

@@ -4,7 +4,7 @@ export type AuthenticationData = {
   id: string;
 };
 
-class Authentication {
+class Authenticator {
   public generateToken = (input: AuthenticationData): string => {
     const token: string = jwt.sign(
       {
@@ -30,4 +30,4 @@ class Authentication {
   };
 }
 
-export { Authentication };
+export default new Authenticator();

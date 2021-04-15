@@ -13,4 +13,4 @@ class HashManager {
   };
 }
 
-export { HashManager };
+export default new HashManager();

@@ -6,4 +6,4 @@ class idGenerator {
   };
 }
 
-export { idGenerator };
+export default new idGenerator();
