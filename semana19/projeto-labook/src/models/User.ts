@@ -4,7 +4,10 @@ export type SignUpInputDTO = {
   password: string;
 };
 
-export type LoginInputDTO = {};
+export type LoginInputDTO = {
+  email: string;
+  password: string;
+};
 
 export class User {
   constructor(
