@@ -1,7 +1,9 @@
+import friendshipDatabase from "../database/friendshipDatabase";
 import UserDatabase from "../database/userDatabase";
 import { AppError } from "../errors/AppError";
+import { FriendDTO, MakeFriend } from "../models/Friend";
 import { LoginInputDTO, SignUpInputDTO, User } from "../models/User";
-import authenticator from "../services/authenticator";
+import authenticator, { AuthenticationData } from "../services/authenticator";
 import idGenerator from "../services/generateId";
 import HashManager from "../services/hashManager";
 
@@ -63,6 +65,27 @@ class UserBusiness {
       const id = result.getId();
       const token = authenticator.generateToken({ id });
       return token;
+    } catch (error) {
+      throw new AppError(error.message || error.sqlMessage, error.statusCode);
+    }
+  };
+
+  public makeFriendBusiness = async (input: FriendDTO) => {
+    try {
+      const authenticationData: AuthenticationData = authenticator.getTokenData(
+        input.token
+      );
+      if (!input.token || !authenticationData) {
+        throw new AppError("You need to provide a valid token!", 406);
+      }
+      if (!input.resFriend_id || input.resFriend_id.trim() === "") {
+        throw new AppError("User to follow doens't exist", 404);
+      }
+      const params = {
+        reqFriend_id: authenticationData.id,
+        resFriend_id: input.resFriend_id,
+      };
+      await friendshipDatabase.makeFriend(params);
     } catch (error) {
       throw new AppError(error.message || error.sqlMessage, error.statusCode);
     }

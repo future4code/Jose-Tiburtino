@@ -9,6 +9,7 @@ const postController = new PostController();
 
 router.post("/user/signup", userController.signup);
 router.post("/user/login", userController.login);
+router.post("/user/friendship", userController.makeFriendship);
 
 router.post("/post/create", postController.createPost);
 router.get("/post/:id", postController.getPostById);

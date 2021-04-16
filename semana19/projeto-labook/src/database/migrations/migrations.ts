@@ -18,7 +18,15 @@ class Migrations extends Connection {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         author_id VARCHAR(255),
         FOREIGN KEY (author_id) REFERENCES Labook_Users(id)
+     );
+
+     CREATE TABLE IF NOT EXISTS Labook_Friends (
+       reqFriend_id VARCHAR(255) NOT NULL,
+       resFriend_id VARCHAR(255) NOT NULL,
+       FOREIGN KEY (reqFriend_id) REFERENCES Labook_Users(id),
+       FOREIGN KEY (resFriend_id) REFERENCES Labook_Users(id)
      )
+
     `);
 
       console.log("Tables created.");
