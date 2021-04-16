@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import UserBusiness from "../business/userBusiness";
 import { FriendDTO } from "../models/Friend";
-import { LoginInputDTO, SignUpInputDTO } from "../models/User";
+import { LoginInputDTO, SignUpInputDTO, User } from "../models/User";
 
 class UserController {
   public signup = async (req: Request, res: Response) => {
@@ -40,6 +40,18 @@ class UserController {
       const friend: FriendDTO = { resFriend_id, token };
       await UserBusiness.makeFriendBusiness(friend);
       res.status(200).send({ message: "You are friends now!" });
+    } catch (error) {
+      res.status(error.statusCode).send({ message: error.message });
+    }
+  };
+
+  public undoFriendship = async (req: Request, res: Response) => {
+    try {
+      const { resFriend_id } = req.params;
+      const token: string = req.headers.authorization as string;
+      const unfriend: FriendDTO = { resFriend_id, token };
+      await UserBusiness.undoFriendBusiness(unfriend);
+      res.status(200).send({ message: "You are not friends anymore." });
     } catch (error) {
       res.status(error.statusCode).send({ message: error.message });
     }

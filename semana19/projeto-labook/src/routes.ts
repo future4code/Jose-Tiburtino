@@ -10,6 +10,7 @@ const postController = new PostController();
 router.post("/user/signup", userController.signup);
 router.post("/user/login", userController.login);
 router.post("/user/friendship", userController.makeFriendship);
+router.delete("/user/unfriend/:resFriend_id", userController.undoFriendship);
 
 router.post("/post/create", postController.createPost);
 router.get("/post/:id", postController.getPostById);

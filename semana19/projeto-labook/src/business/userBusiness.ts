@@ -1,7 +1,12 @@
 import friendshipDatabase from "../database/friendshipDatabase";
 import UserDatabase from "../database/userDatabase";
 import { AppError } from "../errors/AppError";
-import { FriendDTO, MakeFriend } from "../models/Friend";
+import {
+  FriendDTO,
+  UnfriendDTO,
+  MakeFriend,
+  UndoFriend,
+} from "../models/Friend";
 import { LoginInputDTO, SignUpInputDTO, User } from "../models/User";
 import authenticator, { AuthenticationData } from "../services/authenticator";
 import idGenerator from "../services/generateId";
@@ -79,13 +84,34 @@ class UserBusiness {
         throw new AppError("You need to provide a valid token!", 406);
       }
       if (!input.resFriend_id || input.resFriend_id.trim() === "") {
-        throw new AppError("User to follow doens't exist", 404);
+        throw new AppError("User to be friend doens't exist", 404);
       }
-      const params = {
+      const params: MakeFriend = {
         reqFriend_id: authenticationData.id,
         resFriend_id: input.resFriend_id,
       };
       await friendshipDatabase.makeFriend(params);
+    } catch (error) {
+      throw new AppError(error.message || error.sqlMessage, error.statusCode);
+    }
+  };
+
+  public undoFriendBusiness = async (input: UnfriendDTO) => {
+    try {
+      const authenticationData: AuthenticationData = authenticator.getTokenData(
+        input.token
+      );
+      if (!input.token || !authenticationData) {
+        throw new AppError("You need to provide a valid token!", 406);
+      }
+      if (!input.resFriend_id || input.resFriend_id.trim() === "") {
+        throw new AppError("User to undo friend doens't exist", 404);
+      }
+      const params: UndoFriend = {
+        reqFriend_id: authenticationData.id,
+        resFriend_id: input.resFriend_id,
+      };
+      await friendshipDatabase.undoFriend(params);
     } catch (error) {
       throw new AppError(error.message || error.sqlMessage, error.statusCode);
     }
