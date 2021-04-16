@@ -25,8 +25,14 @@ class Migrations extends Connection {
        resFriend_id VARCHAR(255) NOT NULL,
        FOREIGN KEY (reqFriend_id) REFERENCES Labook_Users(id),
        FOREIGN KEY (resFriend_id) REFERENCES Labook_Users(id)
-     )
+     );
 
+     CREATE TABLE IF NOT EXISTS Labook_Like ( 
+      user_id VARCHAR(255) NOT NULL,
+      post_id VARCHAR(255) NOT NULL, 
+      FOREIGN KEY(user_id) REFERENCES Labook_Users (id),
+      FOREIGN KEY(post_id) REFERENCES Labook_Posts (id)
+     );
     `);
 
       console.log("Tables created.");

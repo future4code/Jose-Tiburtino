@@ -65,7 +65,6 @@ class PostDatabase extends Connection {
       WHERE resFriend_id = "${id}")
       ORDER BY Labook_Posts.created_at DESC;
       `);
-      console.log("Database", result[0]);
       return result[0];
     } catch (error) {
       throw new Error(error.message || error.sqlMessage);

@@ -14,6 +14,13 @@ export type PostInfo = {
   authorId: string;
 };
 
+export type AllPosts = {
+  name: string;
+  created_at: string;
+  description: string;
+  photo: string;
+};
+
 export type PostById = {
   id: string;
   token: string;

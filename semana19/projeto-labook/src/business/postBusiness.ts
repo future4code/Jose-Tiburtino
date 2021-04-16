@@ -1,9 +1,16 @@
 import { AppError } from "../errors/AppError";
-import { Post, PostById, PostInfo, PostInputDTO } from "../models/Post";
+import {
+  AllPosts,
+  Post,
+  PostById,
+  PostInfo,
+  PostInputDTO,
+} from "../models/Post";
 import idGenerator from "../services/generateId";
 import authenticator, { AuthenticationData } from "../services/authenticator";
 import dayjs from "dayjs";
 import postDatabase from "../database/postDatabase";
+import likesDatabase from "../database/likesDatabase";
 
 class PostBusiness {
   public createPostBusiness = async (input: PostInputDTO) => {
@@ -78,14 +85,32 @@ class PostBusiness {
       if (!result) {
         throw new AppError("Feed is empty", 422);
       }
-      // const feed = {
-      //   name: result.name,
-      //   createdAt: dayjs(result.created_at).format("DD/MM/YYYY"),
-      //   description: result.description,
-      //   photo: result.photo,
-      // };
-      // return feed;
-      return result
+      const feed = result.map((items: AllPosts) => {
+        return {
+          name: items.name,
+          createdAt: dayjs(items.created_at).format("DD/MM/YYYY"),
+          description: items.description,
+          photo: items.photo,
+        };
+      });
+      return feed;
+    } catch (error) {
+      throw new AppError(error.message || error.sqlMessage, error.statusCode);
+    }
+  };
+
+  public postLike = async (token: string, post_id: string) => {
+    try {
+      if (!post_id) {
+        throw new AppError("Please provide a valid id", 422);
+      }
+      const authenticationData: AuthenticationData = authenticator.getTokenData(
+        token
+      );
+      if (!token || !authenticationData) {
+        throw new AppError("You need to provide a valid token!", 406);
+      }
+      await likesDatabase.like(authenticationData.id, post_id);
     } catch (error) {
       throw new AppError(error.message || error.sqlMessage, error.statusCode);
     }
