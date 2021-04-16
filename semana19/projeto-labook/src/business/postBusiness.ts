@@ -65,6 +65,31 @@ class PostBusiness {
       throw new AppError(error.message || error.sqlMessage, error.statusCode);
     }
   };
+
+  public getAllPostsBusiness = async (token: string) => {
+    try {
+      const authenticationData: AuthenticationData = authenticator.getTokenData(
+        token
+      );
+      if (!token || !authenticationData) {
+        throw new AppError("You need to provide a valid token!", 406);
+      }
+      const result = await postDatabase.selectAllPosts(authenticationData.id);
+      if (!result) {
+        throw new AppError("Feed is empty", 422);
+      }
+      // const feed = {
+      //   name: result.name,
+      //   createdAt: dayjs(result.created_at).format("DD/MM/YYYY"),
+      //   description: result.description,
+      //   photo: result.photo,
+      // };
+      // return feed;
+      return result
+    } catch (error) {
+      throw new AppError(error.message || error.sqlMessage, error.statusCode);
+    }
+  };
 }
 
 export default new PostBusiness();

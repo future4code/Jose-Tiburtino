@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import postBusiness from "../business/postBusiness";
 import { PostById, PostInputDTO } from "../models/Post";
+import authenticator from "../services/authenticator";
 
 class PostController {
   public createPost = async (req: Request, res: Response) => {
@@ -24,6 +25,17 @@ class PostController {
       res.status(200).send({ Post: post });
     } catch (error) {
       res.status(error.statusCode).send({ message: error.message });
+    }
+  };
+
+  public getAllPosts = async (req: Request, res: Response) => {
+    try {
+      const token: string = req.headers.authorization as string;
+      const feed = await postBusiness.getAllPostsBusiness(token);
+      console.log("Controller", feed)
+      res.status(200).send({ Feed: feed });
+    } catch (error) {
+      res.status(error.statusCode).send({ mesage: error.message });
     }
   };
 }

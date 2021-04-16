@@ -45,6 +45,32 @@ class PostDatabase extends Connection {
       throw new Error(error.message || error.sqlMessage);
     }
   };
+
+  public selectAllPosts = async (id: string): Promise<any> => {
+    try {
+      const result = await Connection.connection.raw(`
+      SELECT Labook_Users.name, Labook_Posts.created_at,
+      Labook_Posts.description,
+      Labook_Posts.photo
+      FROM Labook_Posts
+      JOIN Labook_Users
+      ON Labook_Posts.author_id = Labook_Users.id
+      WHERE Labook_Posts.author_id IN (
+      SELECT resFriend_id 
+      FROM Labook_Friends
+      WHERE reqFriend_id = "${id}")
+      OR Labook_Posts.author_id IN (
+      SELECT reqFriend_id 
+      FROM Labook_Friends
+      WHERE resFriend_id = "${id}")
+      ORDER BY Labook_Posts.created_at DESC;
+      `);
+      console.log("Database", result[0]);
+      return result[0];
+    } catch (error) {
+      throw new Error(error.message || error.sqlMessage);
+    }
+  };
 }
 
 export default new PostDatabase();
