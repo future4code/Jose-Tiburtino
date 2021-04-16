@@ -8,7 +8,7 @@
 
 Teste as rotas com a documentação, basta importar ela para seu postman.
 
-[Postman - Cookenu]()
+[Postman - LaBook]()
 
 ## ✨ Tecnologias
 

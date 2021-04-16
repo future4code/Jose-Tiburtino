@@ -14,6 +14,11 @@ export type PostInfo = {
   authorId: string;
 };
 
+export type PostById = {
+  id: string;
+  token: string;
+};
+
 enum POST_TYPE {
   NORMAL = "normal",
   EVENT = "event",

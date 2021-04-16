@@ -1,5 +1,5 @@
 import { AppError } from "../errors/AppError";
-import { Post, PostInfo, PostInputDTO } from "../models/Post";
+import { Post, PostById, PostInfo, PostInputDTO } from "../models/Post";
 import idGenerator from "../services/generateId";
 import authenticator, { AuthenticationData } from "../services/authenticator";
 import dayjs from "dayjs";
@@ -11,6 +11,9 @@ class PostBusiness {
       const authenticationData: AuthenticationData = authenticator.getTokenData(
         input.token
       );
+      if (!input.token || !authenticationData) {
+        throw new AppError("Invalid token", 406);
+      }
       if (
         !input.photo ||
         !input.type ||
@@ -19,7 +22,7 @@ class PostBusiness {
       ) {
         throw new AppError(
           "You need to provide a photo, type and description",
-          406
+          422
         );
       }
       const id = idGenerator.generateId();
@@ -37,20 +40,29 @@ class PostBusiness {
     }
   };
 
-  public getPostByIdBusiness = async (id: string) => {
+  public getPostByIdBusiness = async (input: PostById) => {
     try {
-      const result = await postDatabase.selectPostById(id);
+      const authenticationData: AuthenticationData = authenticator.getTokenData(
+        input.token
+      );
+      if (!input.token || !authenticationData) {
+        throw new AppError("You need to provide a valid token!", 406);
+      }
+      const result = await postDatabase.selectPostById(input.id);
+      if (!result) {
+        throw new AppError("Post doesn't exist", 404);
+      }
       const post: PostInfo = {
         id: result.id,
         photo: result.photo,
         description: result.description,
         type: result.description,
         createdAt: dayjs(result.created_at).format("DD/MM/YYYY"),
-        authorId: result.author_id,
+        authorId: authenticationData.id,
       };
       return post;
     } catch (error) {
-      throw new Error(error.message || error.sqlMessage);
+      throw new AppError(error.message || error.sqlMessage, error.statusCode);
     }
   };
 }
