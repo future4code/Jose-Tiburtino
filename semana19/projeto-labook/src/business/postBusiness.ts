@@ -11,6 +11,8 @@ import authenticator, { AuthenticationData } from "../services/authenticator";
 import dayjs from "dayjs";
 import postDatabase from "../database/postDatabase";
 import likesDatabase from "../database/likesDatabase";
+import { Comment, CommentDTO } from "../models/Comment";
+import commentsDatabase from "../database/commentsDatabase";
 
 class PostBusiness {
   public createPostBusiness = async (input: PostInputDTO) => {
@@ -130,6 +132,33 @@ class PostBusiness {
       await likesDatabase.deslike(authenticationData.id, post_id);
     } catch (error) {
       throw new AppError(error.message || error.sqlMessage, error.statusCode);
+    }
+  };
+
+  public postComment = async (input: CommentDTO) => {
+    try {
+      if (!input.post_id) {
+        throw new AppError("Please provide a valid id", 422);
+      }
+      if (!input.comment || input.comment.trim() === "") {
+        throw new AppError("You need to send a comment", 422);
+      }
+      const authenticationData: AuthenticationData = authenticator.getTokenData(
+        input.token
+      );
+      if (!input.token || !authenticationData) {
+        throw new AppError("You need to provide a valid token!", 406);
+      }
+      const id = idGenerator.generateId();
+      const newComment: Comment = {
+        id: id,
+        user_id: authenticationData.id,
+        post_id: input.post_id,
+        comment: input.comment,
+      };
+      await commentsDatabase.comment(newComment);
+    } catch (error) {
+      throw new AppError(error.message || error.sqlMessagem, error.statusCode);
     }
   };
 }

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import postBusiness from "../business/postBusiness";
+import { CommentDTO } from "../models/Comment";
 import { PostById, PostInputDTO } from "../models/Post";
 
 class PostController {
@@ -53,6 +54,19 @@ class PostController {
       const { post_id } = req.params;
       const token: string = req.headers.authorization as string;
       await postBusiness.postDeslike(token, post_id);
+      res.sendStatus(200);
+    } catch (error) {
+      res.status(error.statusCode).send({ message: error.message });
+    }
+  };
+
+  public comment = async (req: Request, res: Response) => {
+    try {
+      const token: string = req.headers.authorization as string;
+      const { post_id } = req.params;
+      const { comment } = req.body;
+      const comments: CommentDTO = { token, post_id, comment };
+      await postBusiness.postComment(comments);
       res.sendStatus(200);
     } catch (error) {
       res.status(error.statusCode).send({ message: error.message });

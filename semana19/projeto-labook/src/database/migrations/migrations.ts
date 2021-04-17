@@ -33,6 +33,14 @@ class Migrations extends Connection {
       FOREIGN KEY(user_id) REFERENCES Labook_Users (id),
       FOREIGN KEY(post_id) REFERENCES Labook_Posts (id)
      );
+
+     CREATE TABLE Labook_Comment (
+      id VARCHAR(255) PRIMARY KEY,
+      user_id VARCHAR(255) NOT NULL,
+      post_id VARCHAR(255) NOT NULL,
+      comment VARCHAR(255) NOT NULL,
+      FOREIGN KEY(user_id) REFERENCES Labook_Users (id),
+      FOREIGN KEY(post_id) REFERENCES Labook_Posts (id) );
     `);
 
       console.log("Tables created.");
