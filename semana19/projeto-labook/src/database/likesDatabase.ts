@@ -8,7 +8,17 @@ class LikesDatabase extends Connection {
         .insert({ user_id, post_id })
         .into(LikesDatabase.tableName);
     } catch (error) {
-      console.log("Ta aqui,database", error);
+      throw new Error(error.message || error.sqlMessage);
+    }
+  };
+
+  public deslike = async (user_id: string, post_id: string) => {
+    try {
+      return await Connection.connection
+        .delete()
+        .from(LikesDatabase.tableName)
+        .where({ user_id, post_id });
+    } catch (error) {
       throw new Error(error.message || error.sqlMessage);
     }
   };

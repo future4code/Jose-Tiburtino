@@ -47,6 +47,17 @@ class PostController {
       res.status(error.statusCode).send({ message: error.message });
     }
   };
+
+  public deslike = async (req: Request, res: Response) => {
+    try {
+      const { post_id } = req.params;
+      const token: string = req.headers.authorization as string;
+      await postBusiness.postDeslike(token, post_id);
+      res.sendStatus(200);
+    } catch (error) {
+      res.status(error.statusCode).send({ message: error.message });
+    }
+  };
 }
 
 export { PostController };

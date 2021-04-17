@@ -115,6 +115,23 @@ class PostBusiness {
       throw new AppError(error.message || error.sqlMessage, error.statusCode);
     }
   };
+
+  public postDeslike = async (token: string, post_id: string) => {
+    try {
+      if (!post_id) {
+        throw new AppError("Please provide a valid id", 422);
+      }
+      const authenticationData: AuthenticationData = authenticator.getTokenData(
+        token
+      );
+      if (!token || !authenticationData) {
+        throw new AppError("You need to provide a valid token!", 406);
+      }
+      await likesDatabase.deslike(authenticationData.id, post_id);
+    } catch (error) {
+      throw new AppError(error.message || error.sqlMessage, error.statusCode);
+    }
+  };
 }
 
 export default new PostBusiness();
