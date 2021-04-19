@@ -2,7 +2,16 @@
 
 ## :memo: Funcionalidades
 
-- 
+- Cadastro
+- Login
+- Criação de post
+- Buscar post por ID
+- Fazer amizade
+- Desfazer amizade
+- Ver todo o feed
+- Curtir post
+- Descurtir post
+- Comentar post
 
 ## 💻 Documentação
 
