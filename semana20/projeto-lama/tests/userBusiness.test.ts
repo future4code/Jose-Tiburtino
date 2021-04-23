@@ -90,3 +90,56 @@ describe("Signup", () => {
     } catch (error) {}
   });
 });
+
+describe("Login", () => {
+  test("Error when some field is blank", async () => {
+    expect.assertions(2);
+    const newUser = {
+      email: "",
+      password: "123456789",
+    };
+    try {
+      await userBusiness.login(newUser);
+    } catch (error) {
+      expect(error.statusCode).toBe(422);
+      expect(error.message).toBe("Please, fill the fields email and password");
+    }
+  });
+  test("Error when email is not found", async () => {
+    expect.assertions(2);
+    try {
+      const userLogin = {
+        email: "banana@gmail.com",
+        password: "123u14418",
+      };
+      await userBusiness.login(userLogin);
+    } catch (error) {
+      expect(error.statusCode).toBe(401);
+      expect(error.message).toBe("Invalid credentials");
+    }
+  });
+  test("Error when password is not correct", async () => {
+    expect.assertions(2);
+    try {
+      const userLogin = {
+        email: "josevictortf@gmail.com",
+        password: "seilaha",
+      };
+      await userBusiness.login(userLogin);
+    } catch (error) {
+      expect(error.statusCode).toBe(401);
+      expect(error.message).toBe("Invalid credentials");
+    }
+  });
+  test("Success", async () => {
+    expect.assertions(1);
+    try {
+      const userLogin = {
+        email: "josevictortf@gmail.com",
+        password: "muitolegal",
+      };
+      const { accessToken } = await userBusiness.login(userLogin);
+      expect(accessToken).toBe("token");
+    } catch (error) {}
+  });
+});

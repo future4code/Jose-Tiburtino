@@ -32,19 +32,18 @@ export class UserController {
     await BaseDatabase.destroyConnection();
   };
 
-  async login(req: Request, res: Response) {
+  public login = async (req: Request, res: Response) => {
     try {
       const loginData: LoginInputDTO = {
         email: req.body.email,
         password: req.body.password,
       };
       const token = await userBusiness.login(loginData);
-
       res.status(200).send({ token });
     } catch (error) {
       res.status(error.statusCode).send({ message: error.message });
     }
 
     await BaseDatabase.destroyConnection();
-  }
+  };
 }

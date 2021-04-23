@@ -51,24 +51,29 @@ export class UserBusiness {
     }
   };
 
-  public login = async (user: LoginInputDTO): Promise<string> => {
-    if (!user.email || !user.password) {
-      throw new BaseError("Please, fill the fields email and password", 422);
+  public login = async (user: LoginInputDTO): Promise<any> => {
+    try {
+      if (!user.email || !user.password) {
+        throw new BaseError("Please, fill the fields email and password", 422);
+      }
+      const userFromDB = await this.userDatabase.login(user.email);
+      if (!user) {
+        throw new BaseError("Invalid credentials", 401);
+      }
+      const hashCompare = await this.hashManager.compare(
+        user.password,
+        userFromDB.password
+      );
+      if (!hashCompare) {
+        throw new BaseError("Invalid credentials", 401);
+      }
+      const accessToken = this.authenticator.generateToken({
+        id: userFromDB.id,
+        role: userFromDB.role,
+      });
+      return accessToken;
+    } catch (error) {
+      throw new BaseError(error.message || error.sqlMessage, error.statusCode);
     }
-    const userFromDB = await this.userDatabase.login(user.email);
-    const hashCompare = await this.hashManager.compare(
-      user.password,
-      userFromDB.password
-    );
-    const accessToken = this.authenticator.generateToken({
-      id: userFromDB.id,
-      role: userFromDB.role,
-    });
-
-    if (!hashCompare) {
-      throw new Error("Invalid Password!");
-    }
-
-    return accessToken;
   };
 }
