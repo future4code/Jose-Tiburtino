@@ -44,4 +44,20 @@ export class BandBusiness {
       throw new BaseError(error.message || error.sqlMessage, error.statusCode);
     }
   };
+
+  public getBandByIdOrName = async (
+    token: string,
+    property: string
+  ): Promise<Band> => {
+    try {
+      this.authenticator.getData(token);
+      const band = await this.bandDatabase.selectBandById(property);
+      if (!band) {
+        throw new BaseError("Band not found.", 404);
+      }
+      return band;
+    } catch (error) {
+      throw new BaseError(error.message || error.sqlMessage, error.statusCode);
+    }
+  };
 }

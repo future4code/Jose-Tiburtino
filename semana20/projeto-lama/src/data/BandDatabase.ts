@@ -38,4 +38,17 @@ export class BandDatabase extends BaseDatabase {
       throw new Error(error.sqlMessage || error.message);
     }
   };
+
+  public selectBandById = async (property: string): Promise<Band> => {
+    try {
+      const result = await BaseDatabase.connection
+        .select("*")
+        .from(BandDatabase.tableName)
+        .where({ id: property })
+        .orWhere({ name: property });
+      return BandDatabase.dataToModel(result[0]);
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+  };
 }

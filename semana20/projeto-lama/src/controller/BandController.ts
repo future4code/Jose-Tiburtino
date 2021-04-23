@@ -26,4 +26,15 @@ export class BandController {
       res.status(error.statusCode || 400).send({ message: error.message });
     }
   };
+
+  public selectOneBand = async (req: Request, res: Response) => {
+    try {
+      const token: string = req.headers.authorization as string;
+      const { term } = req.query;
+      const band = await bandBusiness.getBandByIdOrName(token, term as string);
+      res.status(200).send({ Band: band });
+    } catch (error) {
+      res.status(error.statusCode || 400).send({ message: error.message });
+    }
+  };
 }
