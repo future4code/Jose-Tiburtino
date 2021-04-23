@@ -1,34 +1,32 @@
 import * as jwt from "jsonwebtoken";
 
 export class Authenticator {
-  public generateToken(
-    input: AuthenticationData,
-    expiresIn: string = process.env.ACCESS_TOKEN_EXPIRES_IN!
-  ): string {
-    const token = jwt.sign(
+  private static expiresIn: string = process.env.JWT_EXPIRE_TIME!;
+
+  public generateToken = (input: AuthenticationData): string => {
+    const newToken = jwt.sign(
       {
         id: input.id,
         role: input.role,
       },
       process.env.JWT_KEY as string,
       {
-        expiresIn,
+        expiresIn: Authenticator.expiresIn,
       }
     );
-    return token;
-  }
+    return newToken;
+  };
 
-  public getData(token: string): AuthenticationData {
+  public getData(token: string) {
     const payload = jwt.verify(token, process.env.JWT_KEY as string) as any;
-    const result = {
-      id: payload.id,
-      role: payload.role,
-    };
+    const result = { id: payload.id, role: payload.role };
     return result;
   }
 }
 
-interface AuthenticationData {
+export interface AuthenticationData {
   id: string;
-  role?: string;
+  role: string;
 }
+
+export default new Authenticator();

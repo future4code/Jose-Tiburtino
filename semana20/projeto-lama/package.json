@@ -4,7 +4,7 @@
   "description": "Projeto LAMA",
   "main": "index.js",
   "scripts": {
-    "migrations": "clear && echo \"Creating tables...\" && tsc && node ./build/database/migrations/migrations.js",
+    "migrations": "clear && echo \"Creating tables...\" && tsc && node ./build/data/migrations/migrations.js",
     "dev": "clear && ts-node-dev ./src/index.ts",
     "start": "tsc && node --inspect ./build/src/index.js",
     "test": "clear && echo \"Running tests...\" && jest"

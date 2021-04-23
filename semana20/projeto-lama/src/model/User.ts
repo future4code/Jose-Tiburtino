@@ -1,51 +1,13 @@
+import { BaseError } from "../error/BaseError";
+
 export class User {
   constructor(
-    private id: string,
-    private name: string,
-    private email: string,
-    private password: string,
-    private role: UserRole
+    public readonly id: string,
+    public readonly name: string,
+    public readonly email: string,
+    public readonly password: string,
+    public readonly role: UserRole = UserRole.NORMAL
   ) {}
-
-  getId() {
-    return this.id;
-  }
-
-  getName() {
-    return this.name;
-  }
-
-  getEmail() {
-    return this.email;
-  }
-
-  getPassword() {
-    return this.password;
-  }
-
-  getRole() {
-    return this.role;
-  }
-
-  setId(id: string) {
-    this.id = id;
-  }
-
-  setName(name: string) {
-    this.name = name;
-  }
-
-  setEmail(email: string) {
-    this.email = email;
-  }
-
-  setPassword(password: string) {
-    this.password = password;
-  }
-
-  setRole(role: UserRole) {
-    this.role = role;
-  }
 
   static stringToUserRole(input: string): UserRole {
     switch (input) {
@@ -54,7 +16,7 @@ export class User {
       case "ADMIN":
         return UserRole.ADMIN;
       default:
-        throw new Error("Invalid user role");
+        throw new BaseError("Invalid user role", 422);
     }
   }
 

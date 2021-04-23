@@ -1,46 +1,68 @@
-import { UserInputDTO, LoginInputDTO } from "../model/User";
+import { UserInputDTO, LoginInputDTO, User } from "../model/User";
 import { UserDatabase } from "../data/UserDatabase";
 import { IdGenerator } from "../services/IdGenerator";
 import { HashManager } from "../services/HashManager";
 import { Authenticator } from "../services/Authenticator";
+import { BaseError } from "../error/BaseError";
 
 export class UserBusiness {
-  async createUser(user: UserInputDTO) {
-    const idGenerator = new IdGenerator();
-    const id = idGenerator.generate();
+  constructor(
+    private idGenerator: IdGenerator,
+    private authenticator: Authenticator,
+    private hashManager: HashManager,
+    private userDatabase: UserDatabase
+  ) {}
 
-    const hashManager = new HashManager();
-    const hashPassword = await hashManager.hash(user.password);
+  public createUser = async (user: UserInputDTO): Promise<any> => {
+    try {
+      if (!user.email || !user.password || !user.name) {
+        throw new BaseError("Fill all the informations", 422);
+      }
+      if (user.password.length < 6) {
+        throw new BaseError(
+          "'password' must contain at least 6 characters",
+          422
+        );
+      }
+      if (user.email.indexOf("@") === -1) {
+        throw new BaseError("Invalid email", 422);
+      }
+      const id = this.idGenerator.generate();
+      const hashPassword = await this.hashManager.hash(user.password);
+      const newUser = new User(
+        id,
+        user.name,
+        user.email,
+        hashPassword,
+        User.stringToUserRole(user.role)
+      );
+      await this.userDatabase.createUser(newUser);
+      const accessToken = this.authenticator.generateToken({
+        id,
+        role: user.role,
+      });
 
-    const userDatabase = new UserDatabase();
-    await userDatabase.createUser(
-      id,
-      user.email,
-      user.name,
-      hashPassword,
-      user.role
-    );
+      return accessToken;
+    } catch (error) {
+      if (error.message.includes("key", "email")) {
+        throw new BaseError("Email already in use", 409);
+      }
+      throw new BaseError(error.message || error.sqlMessage, error.statusCode);
+    }
+  };
 
-    const authenticator = new Authenticator();
-    const accessToken = authenticator.generateToken({ id, role: user.role });
-
-    return accessToken;
-  }
-
-  async getUserByEmail(user: LoginInputDTO) {
-    const userDatabase = new UserDatabase();
-    const userFromDB = await userDatabase.getUserByEmail(user.email);
-
-    const hashManager = new HashManager();
-    const hashCompare = await hashManager.compare(
+  public login = async (user: LoginInputDTO): Promise<string> => {
+    if (!user.email || !user.password) {
+      throw new BaseError("Please, fill the fields email and password", 422);
+    }
+    const userFromDB = await this.userDatabase.login(user.email);
+    const hashCompare = await this.hashManager.compare(
       user.password,
-      userFromDB.getPassword()
+      userFromDB.password
     );
-
-    const authenticator = new Authenticator();
-    const accessToken = authenticator.generateToken({
-      id: userFromDB.getId(),
-      role: userFromDB.getRole(),
+    const accessToken = this.authenticator.generateToken({
+      id: userFromDB.id,
+      role: userFromDB.role,
     });
 
     if (!hashCompare) {
@@ -48,5 +70,5 @@ export class UserBusiness {
     }
 
     return accessToken;
-  }
+  };
 }

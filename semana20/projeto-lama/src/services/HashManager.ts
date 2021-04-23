@@ -2,7 +2,7 @@ import * as bcrypt from "bcryptjs";
 
 export class HashManager {
   public async hash(text: string): Promise<string> {
-    const rounds = 12;
+    const rounds = Number(process.env.BCRYPT_COST);
     const salt = await bcrypt.genSalt(rounds);
     const result = await bcrypt.hash(text, salt);
     return result;
@@ -12,3 +12,5 @@ export class HashManager {
     return await bcrypt.compare(text, hash);
   }
 }
+
+export default new HashManager();
