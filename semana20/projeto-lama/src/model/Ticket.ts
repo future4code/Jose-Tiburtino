@@ -31,6 +31,12 @@ export interface TicketInputDTO {
   showId: string;
 }
 
+export interface BuyTicketDTO {
+  name: string;
+  quantity: number;
+  showId: string;
+}
+
 export enum TicketTypes {
   NORMAL = "NORMAL",
   VIP = "VIP",

@@ -33,6 +33,7 @@ class Migrations extends BaseDatabase {
         name VARCHAR(255) NOT NULL,
         value INT NOT NULL,
         quantity INT NOT NULL,
+        sold INT NOT NULL,
         show_id VARCHAR(255) NOT NULL,
         FOREIGN KEY(show_id) REFERENCES Lama_Shows(id)
       )
