@@ -21,7 +21,7 @@ export class BandController {
         responsible: req.body.responsible,
       };
       const result = await bandBusiness.createBand(input, token);
-      res.status(201).send({ message: result });
+      res.status(201).send({ Band: result });
     } catch (error) {
       res.status(error.statusCode || 400).send({ message: error.message });
     }
