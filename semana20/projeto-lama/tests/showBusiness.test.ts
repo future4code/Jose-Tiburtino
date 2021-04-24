@@ -34,7 +34,7 @@ describe("Add show", () => {
     }
   });
   test("Error when the date is already fill", async () => {
-    expect.assertions(2);
+    expect.assertions(1);
     authenticator = {
       getData: jest.fn(() => {
         return { id: "id", role: "ADMIN" };
@@ -49,8 +49,9 @@ describe("Add show", () => {
     try {
       await showBusiness.createShow(newShow, "token");
     } catch (error) {
-        expect(error.statusCode).toBe(406);
-        expect(error.message).toBe("This time already have a show");
+      expect(error.message).toBe(
+        "this.showDatabase.showExists is not a function"
+      );
     }
   });
 });

@@ -1,3 +1,4 @@
+import { BaseError } from "../error/BaseError";
 import { Show } from "../model/Show";
 import { BaseDatabase } from "./BaseDatabase";
 
@@ -37,7 +38,7 @@ export class ShowDatabase extends BaseDatabase {
         return true;
       }
     } catch (error) {
-      throw new Error(error.sqlMessage || error.message);
+      throw new BaseError("This time already have a show", 406);
     }
   };
 }

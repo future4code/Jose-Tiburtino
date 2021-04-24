@@ -54,7 +54,7 @@ export class ShowBusiness {
       await this.showDatabase.addShow(newShow);
       return newShow;
     } catch (error) {
-      throw new BaseError(error.message || error.sqlMessage, error.statusCode);
+      throw new BaseError(error.message, error.statusCode);
     }
   };
 }
