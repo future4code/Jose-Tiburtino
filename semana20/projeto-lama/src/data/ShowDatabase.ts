@@ -17,7 +17,6 @@ export class ShowDatabase extends BaseDatabase {
         })
         .into(ShowDatabase.tableName);
     } catch (error) {
-      console.log(error, "addshow");
       throw new Error(error.sqlMessage || error.message);
     }
   };
