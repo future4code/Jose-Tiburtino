@@ -41,4 +41,20 @@ export class ShowDatabase extends BaseDatabase {
       throw new BaseError("This time already have a show", 406);
     }
   };
+
+  public selectShowByDay = async (weekDay: string): Promise<any> => {
+    try {
+      const show = await BaseDatabase.connection.raw(`
+      SELECT Lama_Bands.name as bandName, Lama_Bands.music_genre as musicGenre
+      FROM Lama_Shows
+      LEFT JOIN Lama_Bands
+      ON Lama_Shows.band_id = Lama_Bands.id
+      WHERE Lama_Shows.week_day = "${weekDay}"
+      ORDER BY Lama_Shows.start_time ASC;
+      `);
+      return show[0];
+    } catch (error) {
+      throw new Error(error.message || error.message);
+    }
+  };
 }

@@ -11,10 +11,7 @@ export class ShowBusiness {
     private showDatabase: ShowDatabase
   ) {}
 
-  public createShow = async (
-    show: AddShowDTO,
-    token: string
-  ): Promise<any> => {
+  public createShow = async (show: AddShowDTO, token: string): Promise<any> => {
     try {
       this.authenticator.getData(token);
       if (!show.weekDay || !show.startTime || !show.endTime || !show.bandId) {
@@ -56,5 +53,17 @@ export class ShowBusiness {
     } catch (error) {
       throw new BaseError(error.message, error.statusCode);
     }
+  };
+
+  public getShowsByDay = async (token: string, weekDay: string) => {
+    this.authenticator.getData(token);
+    if (!weekDay) {
+      throw new BaseError("Missing input", 422);
+    }
+    if (weekDay) {
+      Show.stringToShowDays(weekDay);
+    }
+    const shows = await this.showDatabase.selectShowByDay(weekDay);
+    return shows;
   };
 }

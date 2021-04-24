@@ -22,9 +22,18 @@ export class ShowController {
         bandId: req.body.bandId,
       };
       const result = await showBusiness.createShow(input, token);
-      res
-        .status(201)
-        .send({ Show: result });
+      res.status(201).send({ Show: result });
+    } catch (error) {
+      res.status(error.statusCode || 400).send({ message: error.message });
+    }
+  };
+
+  public getShowsByDay = async (req: Request, res: Response) => {
+    try {
+      const token: string = req.headers.authorization as string;
+      const { weekDay } = req.query;
+      const show = await showBusiness.getShowsByDay(token, weekDay as string);
+      res.status(200).send({ Show: show });
     } catch (error) {
       res.status(error.statusCode || 400).send({ message: error.message });
     }
