@@ -1,14 +1,20 @@
-# LaBook
+# Labenu Music Awards
 
 ## :memo: Funcionalidades
 
-- 
+- Signup
+- Login
+- Adição de banda
+- Adicionar banda a algum show
+- Criação/venda de tickets
+- Procurar banda por id ou nome
+- Procurar todos os shows que irão ter em determinado dia
 
 ## 💻 Documentação
 
 Teste as rotas com a documentação, basta importar ela para seu postman.
 
-[Postman - LAMA]()
+[Postman - LAMA](https://documenter.getpostman.com/view/14145831/TzJybFaK)
 
 ## ✨ Tecnologias
 
@@ -59,6 +65,12 @@ npm run migrations
 
 ```
 npm run dev
+```
+
+- Realize os testes com
+
+```
+npm run test
 ```
 
 ## Desenvolvido por:

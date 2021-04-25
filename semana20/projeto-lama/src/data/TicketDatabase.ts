@@ -35,11 +35,7 @@ export class TicketDatabase extends BaseDatabase {
     }
   };
 
-  public buyTicket = async (
-    name: string,
-    quantity: number,
-    showId: string
-  ) => {
+  public buyTicket = async (name: string, quantity: number, showId: string) => {
     try {
       await BaseDatabase.connection.raw(`
         UPDATE Lama_Tickets
