@@ -6,6 +6,7 @@
   "scripts": {
     "ex1": "clear && tsnd --transpile-only --ignore-watch node_modules src/ex1.ts",
     "ex2": "clear && tsnd --transpile-only --ignore-watch node_modules src/ex2.ts",
+    "ex3": "clear && tsnd --transpile-only --ignore-watch node_modules src/ex3.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
