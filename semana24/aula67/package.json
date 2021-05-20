@@ -1,0 +1,22 @@
+{
+  "name": "aula67",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ex1": "clear && tsnd --transpile-only --ignore-watch node_modules src/ex1.ts",
+    "ex2": "clear && tsnd --transpile-only --ignore-watch node_modules src/ex2.ts",
+    "ex3": "clear && tsnd --transpile-only --ignore-watch node_modules src/ex3.ts",
+    "ex4": "clear && tsnd --transpile-only --ignore-watch node_modules src/ex4.ts",
+    "ex5": "clear && tsnd --transpile-only --ignore-watch node_modules src/ex5.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "José Victor - Epps",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^15.3.1",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.4"
+  }
+}
