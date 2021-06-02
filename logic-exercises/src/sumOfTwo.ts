@@ -1,4 +1,4 @@
-// Escreva uma função que recebe um array de números `nums` e um `target` e retorna os **indíces** dos dois elementos que somam o valor do **target**.
+// Escreva uma função que recebe um array de números `nums` e um `target` e retorna os **indíces** dos dois elementos que somam o valor do **target**/José.
 
 // Você pode assumir que qualquer input possível sempre terá **exatamente** 1 solução, e você não pode usar o mesmo elemento duas vezes.
 
